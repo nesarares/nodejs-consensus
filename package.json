@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./build/main.js",
-    "dev": "backpack dev",
-    "build": "backpack build",
+    "start": "node ./dist/src/index.js",
+    "dev": "tsc-watch --onSuccess \"node ./dist/src/index.js 5000 5001 5002\" --onFailure \"echo Compilation Failed!\" --compiler typescript/bin/tsc --pretty",
+    "build": "tsc",
     "compile:proto": "pbjs -t static-module --es6 -o src/models/model.js src/protos/consensus.proto",
     "compile:ts": "pbts -o src/models/model.d.ts src/models/model.js",
     "compile": "npm run compile:proto && npm run compile:ts"
@@ -14,12 +14,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "protobufjs": "~6.9.0"
+    "protobufjs": "~6.9.0",
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "@types/node": "^13.9.3",
-    "backpack-core": "^0.8.4",
-    "ts-loader": "^6.2.2",
+    "@types/uuid": "^7.0.3",
+    "esm": "^3.2.25",
+    "tsc-watch": "^4.2.3",
     "typescript": "^3.8.3"
   }
 }

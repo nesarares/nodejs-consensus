@@ -24,10 +24,8 @@ npm run dev
 
 - For release:
 
-```
-npm start
-
+```sh
+npm start <port1> <port2> ...
 # or
-
-node build/main.js <args>
+node dist/src/index.js <port1> <port2> ...
 ```
