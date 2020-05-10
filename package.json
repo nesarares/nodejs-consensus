@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./dist/src/index.js",
-    "dev": "tsc-watch --onSuccess \"node ./dist/src/index.js 5000 5001 5002\" --onFailure \"echo Compilation Failed!\" --compiler typescript/bin/tsc --pretty",
+    "dev": "tsc-watch --onSuccess \"node ./dist/src/index.js 127.0.0.1 6666 5000 5001 5002\" --onFailure \"echo Compilation Failed!\" --compiler typescript/bin/tsc --pretty",
     "build": "tsc",
     "compile:proto": "pbjs -t static-module --es6 -o src/models/model.js src/protos/consensus.proto",
     "compile:ts": "pbts -o src/models/model.d.ts src/models/model.js",

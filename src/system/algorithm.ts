@@ -1,5 +1,5 @@
-import { Message } from '../models/model';
+import { IMessage } from "../models/model";
 
 export interface Algorithm {
-	handle(message: Message): boolean;
+  handle(message: IMessage): boolean;
 }

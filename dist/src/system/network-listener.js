@@ -12,6 +12,16 @@ class NetworkListener {
         this.listeners = [];
         this.createServer();
     }
+    on(event, callback) {
+        this.listeners.push({ event, callback });
+    }
+    notifyListeners(event, ...args) {
+        this.listeners.forEach((listener) => {
+            if (listener.event === event) {
+                listener.callback(...args);
+            }
+        });
+    }
     createServer() {
         const server = net_1.default.createServer();
         this.server = server;
@@ -43,6 +53,7 @@ class NetworkListener {
         const address = (_a = this.server) === null || _a === void 0 ? void 0 : _a.address();
         const port = address.port;
         console.log(`Server listening on port ${port}.`);
+        this.notifyListeners("listening");
     }
     handleConnection(socket) {
         console.log(`New connection from ${socket.remoteAddress}:${socket.remotePort}`);
@@ -59,17 +70,7 @@ class NetworkListener {
         console.log(`Received ${data.byteLength} bytes from ${socket.remoteAddress}:${socket.remotePort}`);
         const networkMessage = model_1.NetworkMessage.decode(data);
         socket.end();
-        this.listeners.forEach((listener) => {
-            if (listener.event === "network-message") {
-                listener.callback(networkMessage);
-            }
-        });
-    }
-    on(event, callback) {
-        this.listeners.push({
-            event,
-            callback,
-        });
+        this.notifyListeners("network-message", networkMessage);
     }
 }
 exports.NetworkListener = NetworkListener;

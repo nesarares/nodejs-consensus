@@ -12,7 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const model_1 = require("../models/model");
 const perfect_link_1 = require("../algorithms/perfect-link");
 class System {
-    constructor() {
+    constructor(systemId, port) {
+        this.systemId = systemId;
+        this.port = port;
         this.processes = [];
         this.algorithms = [];
         this.messages = [];

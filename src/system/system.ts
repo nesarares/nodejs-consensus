@@ -1,13 +1,19 @@
-import { ProcessId, Message, NetworkMessage, PlDeliver } from "../models/model";
+import {
+  ProcessId,
+  Message,
+  NetworkMessage,
+  PlDeliver,
+  IMessage,
+} from "../models/model";
 import { Algorithm } from "./algorithm";
 import { PerfectLink } from "../algorithms/perfect-link";
 
 export class System {
   private processes: ProcessId[] = [];
   private algorithms: Algorithm[] = [];
-  private messages: Message[] = [];
+  private messages: IMessage[] = [];
 
-  constructor() {
+  constructor(public systemId: string, public port: number) {
     this.algorithms = [new PerfectLink(this)];
   }
 
@@ -23,7 +29,7 @@ export class System {
     });
   }
 
-  async newMessage(message: Message) {
+  async newMessage(message: IMessage) {
     this.messages.push(message);
     this.eventLoop();
   }

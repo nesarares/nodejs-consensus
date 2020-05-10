@@ -3,11 +3,30 @@ import { Constants } from "../utils/constants";
 import { NetworkMessage } from "../models/model";
 
 export class NetworkListener {
-  private listeners: { event: string; callback: (arg: any) => void }[] = [];
+  private listeners: { event: string; callback: (...args: any) => void }[] = [];
   private server?: Server;
 
   constructor(private port: number) {
     this.createServer();
+  }
+
+  public on(
+    event: "network-message",
+    callback: (message: NetworkMessage) => void
+  ): void;
+
+  public on(event: "listening", callback: () => void): void;
+
+  public on(event: string, callback: (...args: any) => void) {
+    this.listeners.push({ event, callback });
+  }
+
+  private notifyListeners(event: string, ...args: any) {
+    this.listeners.forEach((listener) => {
+      if (listener.event === event) {
+        listener.callback(...args);
+      }
+    });
   }
 
   private createServer() {
@@ -45,11 +64,11 @@ export class NetworkListener {
   }
 
   private onListen() {
-    const address: AddressInfo = this.server?.address() as AddressInfo;
+    const address = this.server?.address() as AddressInfo;
     const port = address.port;
-    console.log(
-      `Server listening on port ${port}.`
-    );
+    console.log(`Server listening on port ${port}.`);
+
+    this.notifyListeners("listening");
   }
 
   private handleConnection(socket: Socket) {
@@ -80,20 +99,6 @@ export class NetworkListener {
     const networkMessage = NetworkMessage.decode(data);
     socket.end();
 
-    this.listeners.forEach((listener) => {
-      if (listener.event === "network-message") {
-        listener.callback(networkMessage);
-      }
-    });
-  }
-
-  public on(
-    event: "network-message",
-    callback: (message: NetworkMessage) => void
-  ) {
-    this.listeners.push({
-      event,
-      callback,
-    });
+    this.notifyListeners("network-message", networkMessage);
   }
 }
