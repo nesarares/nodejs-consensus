@@ -8,22 +8,22 @@ const application_1 = require("./application");
 const utils_1 = require("./utils/utils");
 function validateArgs() {
     if (process.argv.length < 4) {
-        console.log("Usage: node process.js <hub_ip> <hub_port> <port> <index>");
+        console.log("❗ Usage: node process.js <hub_ip> <hub_port> <port> <index>");
         process.exit(-1);
     }
     if (!net_1.default.isIP(process.argv[2])) {
-        console.error(`Invalid hub ip ${hubIp}`);
+        console.error(`🔥 Invalid hub ip ${hubIp}`);
         process.exit(-1);
     }
     if (isNaN(parseInt(process.argv[3]))) {
-        console.error(`Invalid hub port ${hubPort}`);
+        console.error(`🔥 Invalid hub port ${hubPort}`);
         process.exit(-1);
     }
     if (!process.argv[4] || isNaN(parseInt(process.argv[4]))) {
-        console.log("No port or invalid port specified, default to 5000.");
+        console.log("🔥 No port or invalid port specified, default to 5000.");
     }
     if (!process.argv[5] || isNaN(parseInt(process.argv[5]))) {
-        console.log("No process index specified, default to 0");
+        console.log("🔥 No process index specified, default to 0");
     }
 }
 validateArgs();

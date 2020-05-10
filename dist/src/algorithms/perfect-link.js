@@ -28,12 +28,12 @@ class PerfectLink {
         });
         client.on("error", () => {
             var _a;
-            console.error("--------- ⚠ PL SEND ERROR ---------");
+            console.error("🔥 Pl.Eend error");
             console.error(`Could not send message type ${(_a = args.message) === null || _a === void 0 ? void 0 : _a.type} to client ${args.host} port ${args.port}`);
         });
         client.on("end", () => {
             var _a;
-            console.log(`Sent message type ${(_a = args.message) === null || _a === void 0 ? void 0 : _a.type} to client ${args.host} port ${args.port}`);
+            console.log(`👉 Sent message ${model_1.Message.Type[(_a = args.message) === null || _a === void 0 ? void 0 : _a.type]} to client ${args.host} port ${args.port}`);
         });
     }
     handle(message) {

@@ -1,10 +1,4 @@
-import {
-  ProcessId,
-  Message,
-  NetworkMessage,
-  PlDeliver,
-  IMessage,
-} from "../models/model";
+import { ProcessId, Message, NetworkMessage, PlDeliver, IMessage } from "../models/model";
 import { Algorithm } from "./algorithm";
 import { PerfectLink } from "../algorithms/perfect-link";
 
@@ -36,9 +30,7 @@ export class System {
 
   async newNetworkMessage(networkMessage: NetworkMessage) {
     const plDeliver = PlDeliver.create({
-      sender: this.processes.find(
-        (process) => process.port === networkMessage.rendezvousPort
-      ),
+      sender: this.processes.find((process) => process.port === networkMessage.rendezvousPort),
       message: networkMessage.message,
     });
 

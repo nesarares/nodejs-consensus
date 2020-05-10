@@ -12,6 +12,7 @@ class NetworkListener {
         this.listeners = [];
         this.createServer();
     }
+    // Function implementation for method "on"
     on(event, callback) {
         this.listeners.push({ event, callback });
     }
@@ -41,10 +42,10 @@ class NetworkListener {
         server.listen(this.port);
     }
     onClose() {
-        console.log("Server closed.");
+        console.log("😴 Server closed.");
     }
     handleError(error) {
-        console.error("--------- ⚠ SOCKET ERROR ---------");
+        console.error("🔥 Socket error");
         console.error(error.message);
         console.error(error.stack);
     }
@@ -52,22 +53,22 @@ class NetworkListener {
         var _a;
         const address = (_a = this.server) === null || _a === void 0 ? void 0 : _a.address();
         const port = address.port;
-        console.log(`Server listening on port ${port}.`);
+        console.log(`⚡ Server listening on port ${port}.`);
         this.notifyListeners("listening");
     }
     handleConnection(socket) {
-        console.log(`New connection from ${socket.remoteAddress}:${socket.remotePort}`);
+        console.log(`👋 New connection from ${socket.remoteAddress}:${socket.remotePort}`);
         socket.setTimeout(constants_1.Constants.TIMEOUT_MILLIS, () => this.handleSocketTimeout(socket));
         socket.on("data", (data) => {
             this.handleSocketData(data, socket);
         });
     }
     handleSocketTimeout(socket) {
-        console.log(`Client from ip ${socket.remoteAddress}:${socket.remotePort} timed out.`);
+        console.log(`😢 Client from ip ${socket.remoteAddress}:${socket.remotePort} timed out.`);
         socket.end();
     }
     handleSocketData(data, socket) {
-        console.log(`Received ${data.byteLength} bytes from ${socket.remoteAddress}:${socket.remotePort}`);
+        console.log(`📦 Received ${data.byteLength} bytes from ${socket.remoteAddress}:${socket.remotePort}`);
         const networkMessage = model_1.NetworkMessage.decode(data);
         socket.end();
         this.notifyListeners("network-message", networkMessage);

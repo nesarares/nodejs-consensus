@@ -10,13 +10,11 @@ export class NetworkListener {
     this.createServer();
   }
 
-  public on(
-    event: "network-message",
-    callback: (message: NetworkMessage) => void
-  ): void;
-
+  // Function definitions for method "on"
+  public on(event: "network-message", callback: (message: NetworkMessage) => void): void;
   public on(event: "listening", callback: () => void): void;
 
+  // Function implementation for method "on"
   public on(event: string, callback: (...args: any) => void) {
     this.listeners.push({ event, callback });
   }
@@ -54,11 +52,11 @@ export class NetworkListener {
   }
 
   private onClose() {
-    console.log("Server closed.");
+    console.log("😴 Server closed.");
   }
 
   private handleError(error: Error) {
-    console.error("--------- ⚠ SOCKET ERROR ---------");
+    console.error("🔥 Socket error");
     console.error(error.message);
     console.error(error.stack);
   }
@@ -66,19 +64,15 @@ export class NetworkListener {
   private onListen() {
     const address = this.server?.address() as AddressInfo;
     const port = address.port;
-    console.log(`Server listening on port ${port}.`);
+    console.log(`⚡ Server listening on port ${port}.`);
 
     this.notifyListeners("listening");
   }
 
   private handleConnection(socket: Socket) {
-    console.log(
-      `New connection from ${socket.remoteAddress}:${socket.remotePort}`
-    );
+    console.log(`👋 New connection from ${socket.remoteAddress}:${socket.remotePort}`);
 
-    socket.setTimeout(Constants.TIMEOUT_MILLIS, () =>
-      this.handleSocketTimeout(socket)
-    );
+    socket.setTimeout(Constants.TIMEOUT_MILLIS, () => this.handleSocketTimeout(socket));
 
     socket.on("data", (data) => {
       this.handleSocketData(data, socket);
@@ -86,16 +80,13 @@ export class NetworkListener {
   }
 
   private handleSocketTimeout(socket: Socket) {
-    console.log(
-      `Client from ip ${socket.remoteAddress}:${socket.remotePort} timed out.`
-    );
+    console.log(`😢 Client from ip ${socket.remoteAddress}:${socket.remotePort} timed out.`);
+
     socket.end();
   }
 
   private handleSocketData(data: Buffer, socket: Socket) {
-    console.log(
-      `Received ${data.byteLength} bytes from ${socket.remoteAddress}:${socket.remotePort}`
-    );
+    console.log(`📦 Received ${data.byteLength} bytes from ${socket.remoteAddress}:${socket.remotePort}`);
     const networkMessage = NetworkMessage.decode(data);
     socket.end();
 

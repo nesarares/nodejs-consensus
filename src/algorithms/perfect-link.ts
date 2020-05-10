@@ -1,11 +1,5 @@
 import { Algorithm } from "../system/algorithm";
-import {
-  IPlSend,
-  IPlDeliver,
-  IMessage,
-  Message,
-  NetworkMessage,
-} from "../models/model";
+import { IPlSend, IPlDeliver, IMessage, Message, NetworkMessage } from "../models/model";
 import { System } from "../system/system";
 import { v4 as uuidv4 } from "uuid";
 import net from "net";
@@ -13,12 +7,7 @@ import net from "net";
 export class PerfectLink implements Algorithm {
   constructor(private system: System) {}
 
-  public static sendMessage(args: {
-    host: string;
-    port: number;
-    rendevouzPort: number;
-    message: IMessage;
-  }) {
+  public static sendMessage(args: { host: string; port: number; rendevouzPort: number; message: IMessage }) {
     args.message.messageUuid = uuidv4();
 
     const client = new net.Socket();
@@ -38,16 +27,12 @@ export class PerfectLink implements Algorithm {
     });
 
     client.on("error", () => {
-      console.error("--------- ⚠ PL SEND ERROR ---------");
-      console.error(
-        `Could not send message type ${args.message?.type} to client ${args.host} port ${args.port}`
-      );
+      console.error("🔥 Pl.Eend error");
+      console.error(`Could not send message type ${args.message?.type} to client ${args.host} port ${args.port}`);
     });
 
     client.on("end", () => {
-      console.log(
-        `Sent message type ${args.message?.type} to client ${args.host} port ${args.port}`
-      );
+      console.log(`👉 Sent message ${Message.Type[args.message?.type!]} to client ${args.host} port ${args.port}`);
     });
   }
 
