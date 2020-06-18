@@ -3,7 +3,10 @@ import { Message, UcPropose } from "../src/models/model";
 const message = Message.create({
   type: Message.Type.UC_PROPOSE,
   ucPropose: UcPropose.create({
-    value: 13,
+    value: {
+      defined: true,
+      v: 13
+    },
   }),
 });
 

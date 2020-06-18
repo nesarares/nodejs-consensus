@@ -1,6 +1,8 @@
-import net, { Server, Socket, AddressInfo } from "net";
+import net, { AddressInfo, Server, Socket } from "net";
+
+import { Message, NetworkMessage, PlDeliver } from "../models/model";
 import { Constants } from "../utils/constants";
-import { NetworkMessage } from "../models/model";
+import { Utils } from "../utils/utils";
 
 export class NetworkListener {
   private listeners: { event: string; callback: (...args: any) => void }[] = [];
@@ -11,7 +13,10 @@ export class NetworkListener {
   }
 
   // Function definitions for method "on"
-  public on(event: "network-message", callback: (message: NetworkMessage) => void): void;
+  public on(
+    event: "network-message",
+    callback: (message: Message) => void
+  ): void;
   public on(event: "listening", callback: () => void): void;
 
   // Function implementation for method "on"
@@ -70,9 +75,12 @@ export class NetworkListener {
   }
 
   private handleConnection(socket: Socket) {
-    console.log(`👋 New connection from ${socket.remoteAddress}:${socket.remotePort}`);
+    // const { ip, port } = Utils.getIpPort(socket);
+    // console.log(`👋 New connection from ${ip}:${port}`);
 
-    socket.setTimeout(Constants.TIMEOUT_MILLIS, () => this.handleSocketTimeout(socket));
+    socket.setTimeout(Constants.TIMEOUT_MILLIS, () =>
+      this.handleSocketTimeout(socket)
+    );
 
     socket.on("data", (data) => {
       this.handleSocketData(data, socket);
@@ -80,16 +88,31 @@ export class NetworkListener {
   }
 
   private handleSocketTimeout(socket: Socket) {
-    console.log(`😢 Client from ip ${socket.remoteAddress}:${socket.remotePort} timed out.`);
-
+    const { ip, port } = Utils.getIpPort(socket);
+    console.log(`😢 Client from ip ${ip}:${port} timed out.`);
     socket.end();
   }
 
   private handleSocketData(data: Buffer, socket: Socket) {
-    console.log(`📦 Received ${data.byteLength} bytes from ${socket.remoteAddress}:${socket.remotePort}`);
-    const networkMessage = NetworkMessage.decode(data);
-    socket.end();
+    const { ip, port } = Utils.getIpPort(socket);
+    // console.log(`📦 Received ${data.byteLength} bytes from ${ip}:${port}`);
 
-    this.notifyListeners("network-message", networkMessage);
+    // const contentLength = data.readInt32BE(0);
+    let message;
+    try {
+      message = Message.decode(data.slice(4));
+      this.notifyListeners("network-message", message);
+    } catch (error) {
+      // Try to decode with missing content length
+      try {
+        message = Message.decode(data);
+        this.notifyListeners("network-message", message);
+      } catch (error) {
+        console.log("Could not decode wire message, showing buffer:");
+        console.log(data);
+      }
+    } finally {
+      socket.end();
+    }
   }
 }

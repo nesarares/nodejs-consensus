@@ -45,7 +45,7 @@ childPorts
       hubIp,
       hubPort.toString(),
       port.toString(), // Child process assigned port
-      childProcesses.length.toString(), // Child process index
+      (childProcesses.length + 1).toString(), // Child process index from 1
     ];
     const child = fork(childModulePath, args);
 

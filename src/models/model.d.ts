@@ -113,11 +113,389 @@ export class ProcessId implements IProcessId {
     public toJSON(): { [k: string]: any };
 }
 
+/** Properties of a Value. */
+export interface IValue {
+
+    /** Value defined */
+    defined?: (boolean|null);
+
+    /** Value v */
+    v?: (number|null);
+}
+
+/** Represents a Value. */
+export class Value implements IValue {
+
+    /**
+     * Constructs a new Value.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IValue);
+
+    /** Value defined. */
+    public defined: boolean;
+
+    /** Value v. */
+    public v: number;
+
+    /**
+     * Creates a new Value instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns Value instance
+     */
+    public static create(properties?: IValue): Value;
+
+    /**
+     * Encodes the specified Value message. Does not implicitly {@link Value.verify|verify} messages.
+     * @param message Value message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IValue, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified Value message, length delimited. Does not implicitly {@link Value.verify|verify} messages.
+     * @param message Value message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IValue, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a Value message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Value
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Value;
+
+    /**
+     * Decodes a Value message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns Value
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Value;
+
+    /**
+     * Verifies a Value message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a Value message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns Value
+     */
+    public static fromObject(object: { [k: string]: any }): Value;
+
+    /**
+     * Creates a plain object from a Value message. Also converts values to other types if specified.
+     * @param message Value
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: Value, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this Value to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an AppRegistration. */
+export interface IAppRegistration {
+
+    /** AppRegistration owner */
+    owner?: (string|null);
+
+    /** AppRegistration index */
+    index?: (number|null);
+}
+
+/** Represents an AppRegistration. */
+export class AppRegistration implements IAppRegistration {
+
+    /**
+     * Constructs a new AppRegistration.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IAppRegistration);
+
+    /** AppRegistration owner. */
+    public owner: string;
+
+    /** AppRegistration index. */
+    public index: number;
+
+    /**
+     * Creates a new AppRegistration instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns AppRegistration instance
+     */
+    public static create(properties?: IAppRegistration): AppRegistration;
+
+    /**
+     * Encodes the specified AppRegistration message. Does not implicitly {@link AppRegistration.verify|verify} messages.
+     * @param message AppRegistration message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IAppRegistration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified AppRegistration message, length delimited. Does not implicitly {@link AppRegistration.verify|verify} messages.
+     * @param message AppRegistration message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IAppRegistration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an AppRegistration message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns AppRegistration
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AppRegistration;
+
+    /**
+     * Decodes an AppRegistration message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns AppRegistration
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AppRegistration;
+
+    /**
+     * Verifies an AppRegistration message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an AppRegistration message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns AppRegistration
+     */
+    public static fromObject(object: { [k: string]: any }): AppRegistration;
+
+    /**
+     * Creates a plain object from an AppRegistration message. Also converts values to other types if specified.
+     * @param message AppRegistration
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: AppRegistration, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this AppRegistration to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an AppPropose. */
+export interface IAppPropose {
+
+    /** AppPropose value */
+    value?: (IValue|null);
+
+    /** AppPropose processes */
+    processes?: (IProcessId[]|null);
+}
+
+/** Represents an AppPropose. */
+export class AppPropose implements IAppPropose {
+
+    /**
+     * Constructs a new AppPropose.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IAppPropose);
+
+    /** AppPropose value. */
+    public value?: (IValue|null);
+
+    /** AppPropose processes. */
+    public processes: IProcessId[];
+
+    /**
+     * Creates a new AppPropose instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns AppPropose instance
+     */
+    public static create(properties?: IAppPropose): AppPropose;
+
+    /**
+     * Encodes the specified AppPropose message. Does not implicitly {@link AppPropose.verify|verify} messages.
+     * @param message AppPropose message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IAppPropose, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified AppPropose message, length delimited. Does not implicitly {@link AppPropose.verify|verify} messages.
+     * @param message AppPropose message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IAppPropose, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an AppPropose message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns AppPropose
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AppPropose;
+
+    /**
+     * Decodes an AppPropose message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns AppPropose
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AppPropose;
+
+    /**
+     * Verifies an AppPropose message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an AppPropose message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns AppPropose
+     */
+    public static fromObject(object: { [k: string]: any }): AppPropose;
+
+    /**
+     * Creates a plain object from an AppPropose message. Also converts values to other types if specified.
+     * @param message AppPropose
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: AppPropose, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this AppPropose to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an AppDecide. */
+export interface IAppDecide {
+
+    /** AppDecide value */
+    value?: (IValue|null);
+}
+
+/** Represents an AppDecide. */
+export class AppDecide implements IAppDecide {
+
+    /**
+     * Constructs a new AppDecide.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IAppDecide);
+
+    /** AppDecide value. */
+    public value?: (IValue|null);
+
+    /**
+     * Creates a new AppDecide instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns AppDecide instance
+     */
+    public static create(properties?: IAppDecide): AppDecide;
+
+    /**
+     * Encodes the specified AppDecide message. Does not implicitly {@link AppDecide.verify|verify} messages.
+     * @param message AppDecide message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IAppDecide, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified AppDecide message, length delimited. Does not implicitly {@link AppDecide.verify|verify} messages.
+     * @param message AppDecide message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IAppDecide, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an AppDecide message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns AppDecide
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AppDecide;
+
+    /**
+     * Decodes an AppDecide message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns AppDecide
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AppDecide;
+
+    /**
+     * Verifies an AppDecide message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an AppDecide message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns AppDecide
+     */
+    public static fromObject(object: { [k: string]: any }): AppDecide;
+
+    /**
+     * Creates a plain object from an AppDecide message. Also converts values to other types if specified.
+     * @param message AppDecide
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: AppDecide, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this AppDecide to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
 /** Properties of an UcPropose. */
 export interface IUcPropose {
 
     /** UcPropose value */
-    value?: (number|null);
+    value?: (IValue|null);
 }
 
 /** Represents an UcPropose. */
@@ -130,7 +508,7 @@ export class UcPropose implements IUcPropose {
     constructor(properties?: IUcPropose);
 
     /** UcPropose value. */
-    public value: number;
+    public value?: (IValue|null);
 
     /**
      * Creates a new UcPropose instance using the specified properties.
@@ -203,97 +581,91 @@ export class UcPropose implements IUcPropose {
     public toJSON(): { [k: string]: any };
 }
 
-/** Properties of an EcStartEpoch. */
-export interface IEcStartEpoch {
+/** Properties of an UcDecide. */
+export interface IUcDecide {
 
-    /** EcStartEpoch newTimestamp */
-    newTimestamp?: (number|null);
-
-    /** EcStartEpoch newLeader */
-    newLeader?: (IProcessId|null);
+    /** UcDecide value */
+    value?: (IValue|null);
 }
 
-/** Represents an EcStartEpoch. */
-export class EcStartEpoch implements IEcStartEpoch {
+/** Represents an UcDecide. */
+export class UcDecide implements IUcDecide {
 
     /**
-     * Constructs a new EcStartEpoch.
+     * Constructs a new UcDecide.
      * @param [properties] Properties to set
      */
-    constructor(properties?: IEcStartEpoch);
+    constructor(properties?: IUcDecide);
 
-    /** EcStartEpoch newTimestamp. */
-    public newTimestamp: number;
-
-    /** EcStartEpoch newLeader. */
-    public newLeader?: (IProcessId|null);
+    /** UcDecide value. */
+    public value?: (IValue|null);
 
     /**
-     * Creates a new EcStartEpoch instance using the specified properties.
+     * Creates a new UcDecide instance using the specified properties.
      * @param [properties] Properties to set
-     * @returns EcStartEpoch instance
+     * @returns UcDecide instance
      */
-    public static create(properties?: IEcStartEpoch): EcStartEpoch;
+    public static create(properties?: IUcDecide): UcDecide;
 
     /**
-     * Encodes the specified EcStartEpoch message. Does not implicitly {@link EcStartEpoch.verify|verify} messages.
-     * @param message EcStartEpoch message or plain object to encode
+     * Encodes the specified UcDecide message. Does not implicitly {@link UcDecide.verify|verify} messages.
+     * @param message UcDecide message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encode(message: IEcStartEpoch, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static encode(message: IUcDecide, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Encodes the specified EcStartEpoch message, length delimited. Does not implicitly {@link EcStartEpoch.verify|verify} messages.
-     * @param message EcStartEpoch message or plain object to encode
+     * Encodes the specified UcDecide message, length delimited. Does not implicitly {@link UcDecide.verify|verify} messages.
+     * @param message UcDecide message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(message: IEcStartEpoch, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static encodeDelimited(message: IUcDecide, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Decodes an EcStartEpoch message from the specified reader or buffer.
+     * Decodes an UcDecide message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
      * @param [length] Message length if known beforehand
-     * @returns EcStartEpoch
+     * @returns UcDecide
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EcStartEpoch;
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): UcDecide;
 
     /**
-     * Decodes an EcStartEpoch message from the specified reader or buffer, length delimited.
+     * Decodes an UcDecide message from the specified reader or buffer, length delimited.
      * @param reader Reader or buffer to decode from
-     * @returns EcStartEpoch
+     * @returns UcDecide
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EcStartEpoch;
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): UcDecide;
 
     /**
-     * Verifies an EcStartEpoch message.
+     * Verifies an UcDecide message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
     public static verify(message: { [k: string]: any }): (string|null);
 
     /**
-     * Creates an EcStartEpoch message from a plain object. Also converts values to their respective internal types.
+     * Creates an UcDecide message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
-     * @returns EcStartEpoch
+     * @returns UcDecide
      */
-    public static fromObject(object: { [k: string]: any }): EcStartEpoch;
+    public static fromObject(object: { [k: string]: any }): UcDecide;
 
     /**
-     * Creates a plain object from an EcStartEpoch message. Also converts values to other types if specified.
-     * @param message EcStartEpoch
+     * Creates a plain object from an UcDecide message. Also converts values to other types if specified.
+     * @param message UcDecide
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(message: EcStartEpoch, options?: $protobuf.IConversionOptions): { [k: string]: any };
+    public static toObject(message: UcDecide, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
-     * Converts this EcStartEpoch to JSON.
+     * Converts this UcDecide to JSON.
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };
@@ -383,110 +755,17 @@ export class EpAbort implements IEpAbort {
     public toJSON(): { [k: string]: any };
 }
 
-/** Properties of an EpInit. */
-export interface IEpInit {
-
-    /** EpInit valueTimestamp */
-    valueTimestamp?: (number|null);
-
-    /** EpInit value */
-    value?: (number|null);
-}
-
-/** Represents an EpInit. */
-export class EpInit implements IEpInit {
-
-    /**
-     * Constructs a new EpInit.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IEpInit);
-
-    /** EpInit valueTimestamp. */
-    public valueTimestamp: number;
-
-    /** EpInit value. */
-    public value: number;
-
-    /**
-     * Creates a new EpInit instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns EpInit instance
-     */
-    public static create(properties?: IEpInit): EpInit;
-
-    /**
-     * Encodes the specified EpInit message. Does not implicitly {@link EpInit.verify|verify} messages.
-     * @param message EpInit message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IEpInit, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified EpInit message, length delimited. Does not implicitly {@link EpInit.verify|verify} messages.
-     * @param message EpInit message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IEpInit, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes an EpInit message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns EpInit
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EpInit;
-
-    /**
-     * Decodes an EpInit message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns EpInit
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EpInit;
-
-    /**
-     * Verifies an EpInit message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates an EpInit message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns EpInit
-     */
-    public static fromObject(object: { [k: string]: any }): EpInit;
-
-    /**
-     * Creates a plain object from an EpInit message. Also converts values to other types if specified.
-     * @param message EpInit
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: EpInit, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this EpInit to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-}
-
 /** Properties of an EpAborted. */
 export interface IEpAborted {
+
+    /** EpAborted ets */
+    ets?: (number|null);
 
     /** EpAborted valueTimestamp */
     valueTimestamp?: (number|null);
 
     /** EpAborted value */
-    value?: (number|null);
+    value?: (IValue|null);
 }
 
 /** Represents an EpAborted. */
@@ -498,11 +777,14 @@ export class EpAborted implements IEpAborted {
      */
     constructor(properties?: IEpAborted);
 
+    /** EpAborted ets. */
+    public ets: number;
+
     /** EpAborted valueTimestamp. */
     public valueTimestamp: number;
 
     /** EpAborted value. */
-    public value: number;
+    public value?: (IValue|null);
 
     /**
      * Creates a new EpAborted instance using the specified properties.
@@ -579,7 +861,7 @@ export class EpAborted implements IEpAborted {
 export interface IEpPropose {
 
     /** EpPropose value */
-    value?: (number|null);
+    value?: (IValue|null);
 }
 
 /** Represents an EpPropose. */
@@ -592,7 +874,7 @@ export class EpPropose implements IEpPropose {
     constructor(properties?: IEpPropose);
 
     /** EpPropose value. */
-    public value: number;
+    public value?: (IValue|null);
 
     /**
      * Creates a new EpPropose instance using the specified properties.
@@ -668,8 +950,11 @@ export class EpPropose implements IEpPropose {
 /** Properties of an EpDecide. */
 export interface IEpDecide {
 
+    /** EpDecide ets */
+    ets?: (number|null);
+
     /** EpDecide value */
-    value?: (number|null);
+    value?: (IValue|null);
 }
 
 /** Represents an EpDecide. */
@@ -681,8 +966,11 @@ export class EpDecide implements IEpDecide {
      */
     constructor(properties?: IEpDecide);
 
+    /** EpDecide ets. */
+    public ets: number;
+
     /** EpDecide value. */
-    public value: number;
+    public value?: (IValue|null);
 
     /**
      * Creates a new EpDecide instance using the specified properties.
@@ -750,96 +1038,6 @@ export class EpDecide implements IEpDecide {
 
     /**
      * Converts this EpDecide to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-}
-
-/** Properties of an UcDecide. */
-export interface IUcDecide {
-
-    /** UcDecide value */
-    value?: (number|null);
-}
-
-/** Represents an UcDecide. */
-export class UcDecide implements IUcDecide {
-
-    /**
-     * Constructs a new UcDecide.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IUcDecide);
-
-    /** UcDecide value. */
-    public value: number;
-
-    /**
-     * Creates a new UcDecide instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns UcDecide instance
-     */
-    public static create(properties?: IUcDecide): UcDecide;
-
-    /**
-     * Encodes the specified UcDecide message. Does not implicitly {@link UcDecide.verify|verify} messages.
-     * @param message UcDecide message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IUcDecide, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified UcDecide message, length delimited. Does not implicitly {@link UcDecide.verify|verify} messages.
-     * @param message UcDecide message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IUcDecide, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes an UcDecide message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns UcDecide
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): UcDecide;
-
-    /**
-     * Decodes an UcDecide message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns UcDecide
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): UcDecide;
-
-    /**
-     * Verifies an UcDecide message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates an UcDecide message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns UcDecide
-     */
-    public static fromObject(object: { [k: string]: any }): UcDecide;
-
-    /**
-     * Creates a plain object from an UcDecide message. Also converts values to other types if specified.
-     * @param message UcDecide
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: UcDecide, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this UcDecide to JSON.
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };
@@ -936,7 +1134,7 @@ export interface IEpState_ {
     valueTimestamp?: (number|null);
 
     /** EpState_ value */
-    value?: (number|null);
+    value?: (IValue|null);
 }
 
 /** Represents an EpState_. */
@@ -952,7 +1150,7 @@ export class EpState_ implements IEpState_ {
     public valueTimestamp: number;
 
     /** EpState_ value. */
-    public value: number;
+    public value?: (IValue|null);
 
     /**
      * Creates a new EpState_ instance using the specified properties.
@@ -1029,7 +1227,7 @@ export class EpState_ implements IEpState_ {
 export interface IEpWrite_ {
 
     /** EpWrite_ value */
-    value?: (number|null);
+    value?: (IValue|null);
 }
 
 /** Represents an EpWrite_. */
@@ -1042,7 +1240,7 @@ export class EpWrite_ implements IEpWrite_ {
     constructor(properties?: IEpWrite_);
 
     /** EpWrite_ value. */
-    public value: number;
+    public value?: (IValue|null);
 
     /**
      * Creates a new EpWrite_ instance using the specified properties.
@@ -1203,7 +1401,7 @@ export class EpAccept_ implements IEpAccept_ {
 export interface IEpDecided_ {
 
     /** EpDecided_ value */
-    value?: (number|null);
+    value?: (IValue|null);
 }
 
 /** Represents an EpDecided_. */
@@ -1216,7 +1414,7 @@ export class EpDecided_ implements IEpDecided_ {
     constructor(properties?: IEpDecided_);
 
     /** EpDecided_ value. */
-    public value: number;
+    public value?: (IValue|null);
 
     /**
      * Creates a new EpDecided_ instance using the specified properties.
@@ -1284,6 +1482,186 @@ export class EpDecided_ implements IEpDecided_ {
 
     /**
      * Converts this EpDecided_ to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an EcNack_. */
+export interface IEcNack_ {
+}
+
+/** Represents an EcNack_. */
+export class EcNack_ implements IEcNack_ {
+
+    /**
+     * Constructs a new EcNack_.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IEcNack_);
+
+    /**
+     * Creates a new EcNack_ instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns EcNack_ instance
+     */
+    public static create(properties?: IEcNack_): EcNack_;
+
+    /**
+     * Encodes the specified EcNack_ message. Does not implicitly {@link EcNack_.verify|verify} messages.
+     * @param message EcNack_ message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IEcNack_, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified EcNack_ message, length delimited. Does not implicitly {@link EcNack_.verify|verify} messages.
+     * @param message EcNack_ message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IEcNack_, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an EcNack_ message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns EcNack_
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EcNack_;
+
+    /**
+     * Decodes an EcNack_ message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns EcNack_
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EcNack_;
+
+    /**
+     * Verifies an EcNack_ message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an EcNack_ message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns EcNack_
+     */
+    public static fromObject(object: { [k: string]: any }): EcNack_;
+
+    /**
+     * Creates a plain object from an EcNack_ message. Also converts values to other types if specified.
+     * @param message EcNack_
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: EcNack_, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this EcNack_ to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an EcStartEpoch. */
+export interface IEcStartEpoch {
+
+    /** EcStartEpoch newTimestamp */
+    newTimestamp?: (number|null);
+
+    /** EcStartEpoch newLeader */
+    newLeader?: (IProcessId|null);
+}
+
+/** Represents an EcStartEpoch. */
+export class EcStartEpoch implements IEcStartEpoch {
+
+    /**
+     * Constructs a new EcStartEpoch.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IEcStartEpoch);
+
+    /** EcStartEpoch newTimestamp. */
+    public newTimestamp: number;
+
+    /** EcStartEpoch newLeader. */
+    public newLeader?: (IProcessId|null);
+
+    /**
+     * Creates a new EcStartEpoch instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns EcStartEpoch instance
+     */
+    public static create(properties?: IEcStartEpoch): EcStartEpoch;
+
+    /**
+     * Encodes the specified EcStartEpoch message. Does not implicitly {@link EcStartEpoch.verify|verify} messages.
+     * @param message EcStartEpoch message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IEcStartEpoch, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified EcStartEpoch message, length delimited. Does not implicitly {@link EcStartEpoch.verify|verify} messages.
+     * @param message EcStartEpoch message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IEcStartEpoch, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an EcStartEpoch message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns EcStartEpoch
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EcStartEpoch;
+
+    /**
+     * Decodes an EcStartEpoch message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns EcStartEpoch
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EcStartEpoch;
+
+    /**
+     * Verifies an EcStartEpoch message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an EcStartEpoch message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns EcStartEpoch
+     */
+    public static fromObject(object: { [k: string]: any }): EcStartEpoch;
+
+    /**
+     * Creates a plain object from an EcStartEpoch message. Also converts values to other types if specified.
+     * @param message EcStartEpoch
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: EcStartEpoch, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this EcStartEpoch to JSON.
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };
@@ -1374,90 +1752,6 @@ export class EcNewEpoch_ implements IEcNewEpoch_ {
 
     /**
      * Converts this EcNewEpoch_ to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-}
-
-/** Properties of an EcNack_. */
-export interface IEcNack_ {
-}
-
-/** Represents an EcNack_. */
-export class EcNack_ implements IEcNack_ {
-
-    /**
-     * Constructs a new EcNack_.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IEcNack_);
-
-    /**
-     * Creates a new EcNack_ instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns EcNack_ instance
-     */
-    public static create(properties?: IEcNack_): EcNack_;
-
-    /**
-     * Encodes the specified EcNack_ message. Does not implicitly {@link EcNack_.verify|verify} messages.
-     * @param message EcNack_ message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IEcNack_, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified EcNack_ message, length delimited. Does not implicitly {@link EcNack_.verify|verify} messages.
-     * @param message EcNack_ message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IEcNack_, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes an EcNack_ message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns EcNack_
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EcNack_;
-
-    /**
-     * Decodes an EcNack_ message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns EcNack_
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EcNack_;
-
-    /**
-     * Verifies an EcNack_ message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates an EcNack_ message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns EcNack_
-     */
-    public static fromObject(object: { [k: string]: any }): EcNack_;
-
-    /**
-     * Creates a plain object from an EcNack_ message. Also converts values to other types if specified.
-     * @param message EcNack_
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: EcNack_, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this EcNack_ to JSON.
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };
@@ -1649,90 +1943,6 @@ export class BebDeliver implements IBebDeliver {
     public toJSON(): { [k: string]: any };
 }
 
-/** Properties of an EldRecovery. */
-export interface IEldRecovery {
-}
-
-/** Represents an EldRecovery. */
-export class EldRecovery implements IEldRecovery {
-
-    /**
-     * Constructs a new EldRecovery.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IEldRecovery);
-
-    /**
-     * Creates a new EldRecovery instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns EldRecovery instance
-     */
-    public static create(properties?: IEldRecovery): EldRecovery;
-
-    /**
-     * Encodes the specified EldRecovery message. Does not implicitly {@link EldRecovery.verify|verify} messages.
-     * @param message EldRecovery message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IEldRecovery, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified EldRecovery message, length delimited. Does not implicitly {@link EldRecovery.verify|verify} messages.
-     * @param message EldRecovery message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IEldRecovery, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes an EldRecovery message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns EldRecovery
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EldRecovery;
-
-    /**
-     * Decodes an EldRecovery message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns EldRecovery
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EldRecovery;
-
-    /**
-     * Verifies an EldRecovery message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates an EldRecovery message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns EldRecovery
-     */
-    public static fromObject(object: { [k: string]: any }): EldRecovery;
-
-    /**
-     * Creates a plain object from an EldRecovery message. Also converts values to other types if specified.
-     * @param message EldRecovery
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: EldRecovery, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this EldRecovery to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-}
-
 /** Properties of an EldTimeout. */
 export interface IEldTimeout {
 }
@@ -1820,8 +2030,8 @@ export class EldTimeout implements IEldTimeout {
 /** Properties of an EldTrust. */
 export interface IEldTrust {
 
-    /** EldTrust processId */
-    processId?: (IProcessId|null);
+    /** EldTrust process */
+    process?: (IProcessId|null);
 }
 
 /** Represents an EldTrust. */
@@ -1833,8 +2043,8 @@ export class EldTrust implements IEldTrust {
      */
     constructor(properties?: IEldTrust);
 
-    /** EldTrust processId. */
-    public processId?: (IProcessId|null);
+    /** EldTrust process. */
+    public process?: (IProcessId|null);
 
     /**
      * Creates a new EldTrust instance using the specified properties.
@@ -1907,91 +2117,433 @@ export class EldTrust implements IEldTrust {
     public toJSON(): { [k: string]: any };
 }
 
-/** Properties of an EldHeartbeat_. */
-export interface IEldHeartbeat_ {
-
-    /** EldHeartbeat_ epoch */
-    epoch?: (number|null);
+/** Properties of an EpfdTimeout. */
+export interface IEpfdTimeout {
 }
 
-/** Represents an EldHeartbeat_. */
-export class EldHeartbeat_ implements IEldHeartbeat_ {
+/** Represents an EpfdTimeout. */
+export class EpfdTimeout implements IEpfdTimeout {
 
     /**
-     * Constructs a new EldHeartbeat_.
+     * Constructs a new EpfdTimeout.
      * @param [properties] Properties to set
      */
-    constructor(properties?: IEldHeartbeat_);
-
-    /** EldHeartbeat_ epoch. */
-    public epoch: number;
+    constructor(properties?: IEpfdTimeout);
 
     /**
-     * Creates a new EldHeartbeat_ instance using the specified properties.
+     * Creates a new EpfdTimeout instance using the specified properties.
      * @param [properties] Properties to set
-     * @returns EldHeartbeat_ instance
+     * @returns EpfdTimeout instance
      */
-    public static create(properties?: IEldHeartbeat_): EldHeartbeat_;
+    public static create(properties?: IEpfdTimeout): EpfdTimeout;
 
     /**
-     * Encodes the specified EldHeartbeat_ message. Does not implicitly {@link EldHeartbeat_.verify|verify} messages.
-     * @param message EldHeartbeat_ message or plain object to encode
+     * Encodes the specified EpfdTimeout message. Does not implicitly {@link EpfdTimeout.verify|verify} messages.
+     * @param message EpfdTimeout message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encode(message: IEldHeartbeat_, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static encode(message: IEpfdTimeout, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Encodes the specified EldHeartbeat_ message, length delimited. Does not implicitly {@link EldHeartbeat_.verify|verify} messages.
-     * @param message EldHeartbeat_ message or plain object to encode
+     * Encodes the specified EpfdTimeout message, length delimited. Does not implicitly {@link EpfdTimeout.verify|verify} messages.
+     * @param message EpfdTimeout message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(message: IEldHeartbeat_, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static encodeDelimited(message: IEpfdTimeout, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Decodes an EldHeartbeat_ message from the specified reader or buffer.
+     * Decodes an EpfdTimeout message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
      * @param [length] Message length if known beforehand
-     * @returns EldHeartbeat_
+     * @returns EpfdTimeout
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EldHeartbeat_;
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EpfdTimeout;
 
     /**
-     * Decodes an EldHeartbeat_ message from the specified reader or buffer, length delimited.
+     * Decodes an EpfdTimeout message from the specified reader or buffer, length delimited.
      * @param reader Reader or buffer to decode from
-     * @returns EldHeartbeat_
+     * @returns EpfdTimeout
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EldHeartbeat_;
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EpfdTimeout;
 
     /**
-     * Verifies an EldHeartbeat_ message.
+     * Verifies an EpfdTimeout message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
     public static verify(message: { [k: string]: any }): (string|null);
 
     /**
-     * Creates an EldHeartbeat_ message from a plain object. Also converts values to their respective internal types.
+     * Creates an EpfdTimeout message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
-     * @returns EldHeartbeat_
+     * @returns EpfdTimeout
      */
-    public static fromObject(object: { [k: string]: any }): EldHeartbeat_;
+    public static fromObject(object: { [k: string]: any }): EpfdTimeout;
 
     /**
-     * Creates a plain object from an EldHeartbeat_ message. Also converts values to other types if specified.
-     * @param message EldHeartbeat_
+     * Creates a plain object from an EpfdTimeout message. Also converts values to other types if specified.
+     * @param message EpfdTimeout
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(message: EldHeartbeat_, options?: $protobuf.IConversionOptions): { [k: string]: any };
+    public static toObject(message: EpfdTimeout, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
-     * Converts this EldHeartbeat_ to JSON.
+     * Converts this EpfdTimeout to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an EpfdHeartbeatRequest_. */
+export interface IEpfdHeartbeatRequest_ {
+}
+
+/** Represents an EpfdHeartbeatRequest_. */
+export class EpfdHeartbeatRequest_ implements IEpfdHeartbeatRequest_ {
+
+    /**
+     * Constructs a new EpfdHeartbeatRequest_.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IEpfdHeartbeatRequest_);
+
+    /**
+     * Creates a new EpfdHeartbeatRequest_ instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns EpfdHeartbeatRequest_ instance
+     */
+    public static create(properties?: IEpfdHeartbeatRequest_): EpfdHeartbeatRequest_;
+
+    /**
+     * Encodes the specified EpfdHeartbeatRequest_ message. Does not implicitly {@link EpfdHeartbeatRequest_.verify|verify} messages.
+     * @param message EpfdHeartbeatRequest_ message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IEpfdHeartbeatRequest_, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified EpfdHeartbeatRequest_ message, length delimited. Does not implicitly {@link EpfdHeartbeatRequest_.verify|verify} messages.
+     * @param message EpfdHeartbeatRequest_ message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IEpfdHeartbeatRequest_, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an EpfdHeartbeatRequest_ message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns EpfdHeartbeatRequest_
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EpfdHeartbeatRequest_;
+
+    /**
+     * Decodes an EpfdHeartbeatRequest_ message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns EpfdHeartbeatRequest_
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EpfdHeartbeatRequest_;
+
+    /**
+     * Verifies an EpfdHeartbeatRequest_ message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an EpfdHeartbeatRequest_ message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns EpfdHeartbeatRequest_
+     */
+    public static fromObject(object: { [k: string]: any }): EpfdHeartbeatRequest_;
+
+    /**
+     * Creates a plain object from an EpfdHeartbeatRequest_ message. Also converts values to other types if specified.
+     * @param message EpfdHeartbeatRequest_
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: EpfdHeartbeatRequest_, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this EpfdHeartbeatRequest_ to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an EpfdHeartbeatReply_. */
+export interface IEpfdHeartbeatReply_ {
+}
+
+/** Represents an EpfdHeartbeatReply_. */
+export class EpfdHeartbeatReply_ implements IEpfdHeartbeatReply_ {
+
+    /**
+     * Constructs a new EpfdHeartbeatReply_.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IEpfdHeartbeatReply_);
+
+    /**
+     * Creates a new EpfdHeartbeatReply_ instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns EpfdHeartbeatReply_ instance
+     */
+    public static create(properties?: IEpfdHeartbeatReply_): EpfdHeartbeatReply_;
+
+    /**
+     * Encodes the specified EpfdHeartbeatReply_ message. Does not implicitly {@link EpfdHeartbeatReply_.verify|verify} messages.
+     * @param message EpfdHeartbeatReply_ message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IEpfdHeartbeatReply_, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified EpfdHeartbeatReply_ message, length delimited. Does not implicitly {@link EpfdHeartbeatReply_.verify|verify} messages.
+     * @param message EpfdHeartbeatReply_ message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IEpfdHeartbeatReply_, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an EpfdHeartbeatReply_ message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns EpfdHeartbeatReply_
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EpfdHeartbeatReply_;
+
+    /**
+     * Decodes an EpfdHeartbeatReply_ message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns EpfdHeartbeatReply_
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EpfdHeartbeatReply_;
+
+    /**
+     * Verifies an EpfdHeartbeatReply_ message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an EpfdHeartbeatReply_ message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns EpfdHeartbeatReply_
+     */
+    public static fromObject(object: { [k: string]: any }): EpfdHeartbeatReply_;
+
+    /**
+     * Creates a plain object from an EpfdHeartbeatReply_ message. Also converts values to other types if specified.
+     * @param message EpfdHeartbeatReply_
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: EpfdHeartbeatReply_, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this EpfdHeartbeatReply_ to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an EpfdSuspect. */
+export interface IEpfdSuspect {
+
+    /** EpfdSuspect process */
+    process?: (IProcessId|null);
+}
+
+/** Represents an EpfdSuspect. */
+export class EpfdSuspect implements IEpfdSuspect {
+
+    /**
+     * Constructs a new EpfdSuspect.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IEpfdSuspect);
+
+    /** EpfdSuspect process. */
+    public process?: (IProcessId|null);
+
+    /**
+     * Creates a new EpfdSuspect instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns EpfdSuspect instance
+     */
+    public static create(properties?: IEpfdSuspect): EpfdSuspect;
+
+    /**
+     * Encodes the specified EpfdSuspect message. Does not implicitly {@link EpfdSuspect.verify|verify} messages.
+     * @param message EpfdSuspect message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IEpfdSuspect, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified EpfdSuspect message, length delimited. Does not implicitly {@link EpfdSuspect.verify|verify} messages.
+     * @param message EpfdSuspect message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IEpfdSuspect, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an EpfdSuspect message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns EpfdSuspect
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EpfdSuspect;
+
+    /**
+     * Decodes an EpfdSuspect message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns EpfdSuspect
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EpfdSuspect;
+
+    /**
+     * Verifies an EpfdSuspect message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an EpfdSuspect message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns EpfdSuspect
+     */
+    public static fromObject(object: { [k: string]: any }): EpfdSuspect;
+
+    /**
+     * Creates a plain object from an EpfdSuspect message. Also converts values to other types if specified.
+     * @param message EpfdSuspect
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: EpfdSuspect, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this EpfdSuspect to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of an EpfdRestore. */
+export interface IEpfdRestore {
+
+    /** EpfdRestore process */
+    process?: (IProcessId|null);
+}
+
+/** Represents an EpfdRestore. */
+export class EpfdRestore implements IEpfdRestore {
+
+    /**
+     * Constructs a new EpfdRestore.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IEpfdRestore);
+
+    /** EpfdRestore process. */
+    public process?: (IProcessId|null);
+
+    /**
+     * Creates a new EpfdRestore instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns EpfdRestore instance
+     */
+    public static create(properties?: IEpfdRestore): EpfdRestore;
+
+    /**
+     * Encodes the specified EpfdRestore message. Does not implicitly {@link EpfdRestore.verify|verify} messages.
+     * @param message EpfdRestore message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IEpfdRestore, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified EpfdRestore message, length delimited. Does not implicitly {@link EpfdRestore.verify|verify} messages.
+     * @param message EpfdRestore message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IEpfdRestore, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an EpfdRestore message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns EpfdRestore
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): EpfdRestore;
+
+    /**
+     * Decodes an EpfdRestore message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns EpfdRestore
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): EpfdRestore;
+
+    /**
+     * Verifies an EpfdRestore message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates an EpfdRestore message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns EpfdRestore
+     */
+    public static fromObject(object: { [k: string]: any }): EpfdRestore;
+
+    /**
+     * Creates a plain object from an EpfdRestore message. Also converts values to other types if specified.
+     * @param message EpfdRestore
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: EpfdRestore, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this EpfdRestore to JSON.
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };
@@ -2192,8 +2744,11 @@ export class PlDeliver implements IPlDeliver {
 /** Properties of a NetworkMessage. */
 export interface INetworkMessage {
 
-    /** NetworkMessage rendezvousPort */
-    rendezvousPort?: (number|null);
+    /** NetworkMessage senderHost */
+    senderHost?: (string|null);
+
+    /** NetworkMessage senderListeningPort */
+    senderListeningPort?: (number|null);
 
     /** NetworkMessage message */
     message?: (IMessage|null);
@@ -2208,8 +2763,11 @@ export class NetworkMessage implements INetworkMessage {
      */
     constructor(properties?: INetworkMessage);
 
-    /** NetworkMessage rendezvousPort. */
-    public rendezvousPort: number;
+    /** NetworkMessage senderHost. */
+    public senderHost: string;
+
+    /** NetworkMessage senderListeningPort. */
+    public senderListeningPort: number;
 
     /** NetworkMessage message. */
     public message?: (IMessage|null);
@@ -2285,300 +2843,6 @@ export class NetworkMessage implements INetworkMessage {
     public toJSON(): { [k: string]: any };
 }
 
-/** Properties of an AppRegistration. */
-export interface IAppRegistration {
-
-    /** AppRegistration owner */
-    owner?: (string|null);
-
-    /** AppRegistration index */
-    index?: (number|null);
-
-    /** AppRegistration port */
-    port?: (number|null);
-}
-
-/** Represents an AppRegistration. */
-export class AppRegistration implements IAppRegistration {
-
-    /**
-     * Constructs a new AppRegistration.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IAppRegistration);
-
-    /** AppRegistration owner. */
-    public owner: string;
-
-    /** AppRegistration index. */
-    public index: number;
-
-    /** AppRegistration port. */
-    public port: number;
-
-    /**
-     * Creates a new AppRegistration instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns AppRegistration instance
-     */
-    public static create(properties?: IAppRegistration): AppRegistration;
-
-    /**
-     * Encodes the specified AppRegistration message. Does not implicitly {@link AppRegistration.verify|verify} messages.
-     * @param message AppRegistration message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IAppRegistration, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified AppRegistration message, length delimited. Does not implicitly {@link AppRegistration.verify|verify} messages.
-     * @param message AppRegistration message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IAppRegistration, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes an AppRegistration message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns AppRegistration
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AppRegistration;
-
-    /**
-     * Decodes an AppRegistration message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns AppRegistration
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AppRegistration;
-
-    /**
-     * Verifies an AppRegistration message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates an AppRegistration message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns AppRegistration
-     */
-    public static fromObject(object: { [k: string]: any }): AppRegistration;
-
-    /**
-     * Creates a plain object from an AppRegistration message. Also converts values to other types if specified.
-     * @param message AppRegistration
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: AppRegistration, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this AppRegistration to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-}
-
-/** Properties of an AppPropose. */
-export interface IAppPropose {
-
-    /** AppPropose value */
-    value?: (number|null);
-
-    /** AppPropose systemId */
-    systemId?: (string|null);
-
-    /** AppPropose processes */
-    processes?: (IProcessId[]|null);
-}
-
-/** Represents an AppPropose. */
-export class AppPropose implements IAppPropose {
-
-    /**
-     * Constructs a new AppPropose.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IAppPropose);
-
-    /** AppPropose value. */
-    public value: number;
-
-    /** AppPropose systemId. */
-    public systemId: string;
-
-    /** AppPropose processes. */
-    public processes: IProcessId[];
-
-    /**
-     * Creates a new AppPropose instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns AppPropose instance
-     */
-    public static create(properties?: IAppPropose): AppPropose;
-
-    /**
-     * Encodes the specified AppPropose message. Does not implicitly {@link AppPropose.verify|verify} messages.
-     * @param message AppPropose message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IAppPropose, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified AppPropose message, length delimited. Does not implicitly {@link AppPropose.verify|verify} messages.
-     * @param message AppPropose message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IAppPropose, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes an AppPropose message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns AppPropose
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AppPropose;
-
-    /**
-     * Decodes an AppPropose message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns AppPropose
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AppPropose;
-
-    /**
-     * Verifies an AppPropose message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates an AppPropose message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns AppPropose
-     */
-    public static fromObject(object: { [k: string]: any }): AppPropose;
-
-    /**
-     * Creates a plain object from an AppPropose message. Also converts values to other types if specified.
-     * @param message AppPropose
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: AppPropose, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this AppPropose to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-}
-
-/** Properties of an AppDecide. */
-export interface IAppDecide {
-
-    /** AppDecide value */
-    value?: (number|null);
-}
-
-/** Represents an AppDecide. */
-export class AppDecide implements IAppDecide {
-
-    /**
-     * Constructs a new AppDecide.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IAppDecide);
-
-    /** AppDecide value. */
-    public value: number;
-
-    /**
-     * Creates a new AppDecide instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns AppDecide instance
-     */
-    public static create(properties?: IAppDecide): AppDecide;
-
-    /**
-     * Encodes the specified AppDecide message. Does not implicitly {@link AppDecide.verify|verify} messages.
-     * @param message AppDecide message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IAppDecide, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified AppDecide message, length delimited. Does not implicitly {@link AppDecide.verify|verify} messages.
-     * @param message AppDecide message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IAppDecide, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes an AppDecide message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns AppDecide
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AppDecide;
-
-    /**
-     * Decodes an AppDecide message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns AppDecide
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AppDecide;
-
-    /**
-     * Verifies an AppDecide message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates an AppDecide message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns AppDecide
-     */
-    public static fromObject(object: { [k: string]: any }): AppDecide;
-
-    /**
-     * Creates a plain object from an AppDecide message. Also converts values to other types if specified.
-     * @param message AppDecide
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: AppDecide, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this AppDecide to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-}
-
 /** Properties of a Message. */
 export interface IMessage {
 
@@ -2594,6 +2858,9 @@ export interface IMessage {
     /** Message systemId */
     systemId?: (string|null);
 
+    /** Message networkMessage */
+    networkMessage?: (INetworkMessage|null);
+
     /** Message appRegistration */
     appRegistration?: (IAppRegistration|null);
 
@@ -2603,32 +2870,11 @@ export interface IMessage {
     /** Message appDecide */
     appDecide?: (IAppDecide|null);
 
-    /** Message bebBroadcast */
-    bebBroadcast?: (IBebBroadcast|null);
+    /** Message ucDecide */
+    ucDecide?: (IUcDecide|null);
 
-    /** Message bebDeliver */
-    bebDeliver?: (IBebDeliver|null);
-
-    /** Message ecNack_ */
-    ecNack_?: (IEcNack_|null);
-
-    /** Message ecNewEpoch_ */
-    ecNewEpoch_?: (IEcNewEpoch_|null);
-
-    /** Message ecStartEpoch */
-    ecStartEpoch?: (IEcStartEpoch|null);
-
-    /** Message eldHeartbeat_ */
-    eldHeartbeat_?: (IEldHeartbeat_|null);
-
-    /** Message eldRecovery */
-    eldRecovery?: (IEldRecovery|null);
-
-    /** Message eldTimeout */
-    eldTimeout?: (IEldTimeout|null);
-
-    /** Message eldTrust */
-    eldTrust?: (IEldTrust|null);
+    /** Message ucPropose */
+    ucPropose?: (IUcPropose|null);
 
     /** Message epAbort */
     epAbort?: (IEpAbort|null);
@@ -2645,9 +2891,6 @@ export interface IMessage {
     /** Message epDecided_ */
     epDecided_?: (IEpDecided_|null);
 
-    /** Message epInit */
-    epInit?: (IEpInit|null);
-
     /** Message epPropose */
     epPropose?: (IEpPropose|null);
 
@@ -2660,17 +2903,47 @@ export interface IMessage {
     /** Message epWrite_ */
     epWrite_?: (IEpWrite_|null);
 
+    /** Message ecNack_ */
+    ecNack_?: (IEcNack_|null);
+
+    /** Message ecNewEpoch_ */
+    ecNewEpoch_?: (IEcNewEpoch_|null);
+
+    /** Message ecStartEpoch */
+    ecStartEpoch?: (IEcStartEpoch|null);
+
+    /** Message bebBroadcast */
+    bebBroadcast?: (IBebBroadcast|null);
+
+    /** Message bebDeliver */
+    bebDeliver?: (IBebDeliver|null);
+
+    /** Message eldTimeout */
+    eldTimeout?: (IEldTimeout|null);
+
+    /** Message eldTrust */
+    eldTrust?: (IEldTrust|null);
+
+    /** Message epfdTimeout */
+    epfdTimeout?: (IEpfdTimeout|null);
+
+    /** Message epfdHeartbeatRequest_ */
+    epfdHeartbeatRequest_?: (IEpfdHeartbeatRequest_|null);
+
+    /** Message epfdHeartbeatReply_ */
+    epfdHeartbeatReply_?: (IEpfdHeartbeatReply_|null);
+
+    /** Message epfdSuspect */
+    epfdSuspect?: (IEpfdSuspect|null);
+
+    /** Message epfdRestore */
+    epfdRestore?: (IEpfdRestore|null);
+
     /** Message plDeliver */
     plDeliver?: (IPlDeliver|null);
 
     /** Message plSend */
     plSend?: (IPlSend|null);
-
-    /** Message ucDecide */
-    ucDecide?: (IUcDecide|null);
-
-    /** Message ucPropose */
-    ucPropose?: (IUcPropose|null);
 }
 
 /** Represents a Message. */
@@ -2694,6 +2967,9 @@ export class Message implements IMessage {
     /** Message systemId. */
     public systemId: string;
 
+    /** Message networkMessage. */
+    public networkMessage?: (INetworkMessage|null);
+
     /** Message appRegistration. */
     public appRegistration?: (IAppRegistration|null);
 
@@ -2703,32 +2979,11 @@ export class Message implements IMessage {
     /** Message appDecide. */
     public appDecide?: (IAppDecide|null);
 
-    /** Message bebBroadcast. */
-    public bebBroadcast?: (IBebBroadcast|null);
+    /** Message ucDecide. */
+    public ucDecide?: (IUcDecide|null);
 
-    /** Message bebDeliver. */
-    public bebDeliver?: (IBebDeliver|null);
-
-    /** Message ecNack_. */
-    public ecNack_?: (IEcNack_|null);
-
-    /** Message ecNewEpoch_. */
-    public ecNewEpoch_?: (IEcNewEpoch_|null);
-
-    /** Message ecStartEpoch. */
-    public ecStartEpoch?: (IEcStartEpoch|null);
-
-    /** Message eldHeartbeat_. */
-    public eldHeartbeat_?: (IEldHeartbeat_|null);
-
-    /** Message eldRecovery. */
-    public eldRecovery?: (IEldRecovery|null);
-
-    /** Message eldTimeout. */
-    public eldTimeout?: (IEldTimeout|null);
-
-    /** Message eldTrust. */
-    public eldTrust?: (IEldTrust|null);
+    /** Message ucPropose. */
+    public ucPropose?: (IUcPropose|null);
 
     /** Message epAbort. */
     public epAbort?: (IEpAbort|null);
@@ -2745,9 +3000,6 @@ export class Message implements IMessage {
     /** Message epDecided_. */
     public epDecided_?: (IEpDecided_|null);
 
-    /** Message epInit. */
-    public epInit?: (IEpInit|null);
-
     /** Message epPropose. */
     public epPropose?: (IEpPropose|null);
 
@@ -2760,17 +3012,47 @@ export class Message implements IMessage {
     /** Message epWrite_. */
     public epWrite_?: (IEpWrite_|null);
 
+    /** Message ecNack_. */
+    public ecNack_?: (IEcNack_|null);
+
+    /** Message ecNewEpoch_. */
+    public ecNewEpoch_?: (IEcNewEpoch_|null);
+
+    /** Message ecStartEpoch. */
+    public ecStartEpoch?: (IEcStartEpoch|null);
+
+    /** Message bebBroadcast. */
+    public bebBroadcast?: (IBebBroadcast|null);
+
+    /** Message bebDeliver. */
+    public bebDeliver?: (IBebDeliver|null);
+
+    /** Message eldTimeout. */
+    public eldTimeout?: (IEldTimeout|null);
+
+    /** Message eldTrust. */
+    public eldTrust?: (IEldTrust|null);
+
+    /** Message epfdTimeout. */
+    public epfdTimeout?: (IEpfdTimeout|null);
+
+    /** Message epfdHeartbeatRequest_. */
+    public epfdHeartbeatRequest_?: (IEpfdHeartbeatRequest_|null);
+
+    /** Message epfdHeartbeatReply_. */
+    public epfdHeartbeatReply_?: (IEpfdHeartbeatReply_|null);
+
+    /** Message epfdSuspect. */
+    public epfdSuspect?: (IEpfdSuspect|null);
+
+    /** Message epfdRestore. */
+    public epfdRestore?: (IEpfdRestore|null);
+
     /** Message plDeliver. */
     public plDeliver?: (IPlDeliver|null);
 
     /** Message plSend. */
     public plSend?: (IPlSend|null);
-
-    /** Message ucDecide. */
-    public ucDecide?: (IUcDecide|null);
-
-    /** Message ucPropose. */
-    public ucPropose?: (IUcPropose|null);
 
     /**
      * Creates a new Message instance using the specified properties.
@@ -2847,32 +3129,34 @@ export namespace Message {
 
     /** Type enum. */
     enum Type {
-        DUMMY = 0,
+        NETWORK_MESSAGE = 0,
         APP_REGISTRATION = 5,
         APP_PROPOSE = 6,
         APP_DECIDE = 7,
-        BEB_BROADCAST = 10,
-        BEB_DELIVER = 11,
-        EC_NACK_ = 12,
-        EC_NEW_EPOCH_ = 13,
-        EC_START_EPOCH = 14,
-        ELD_HEARTBEAT_ = 15,
-        ELD_RECOVERY = 16,
-        ELD_TIMEOUT = 17,
-        ELD_TRUST = 18,
-        EP_ABORT = 19,
-        EP_ABORTED = 20,
-        EP_ACCEPT_ = 21,
-        EP_DECIDE = 22,
-        EP_DECIDED_ = 23,
-        EP_INIT = 24,
+        UC_DECIDE = 10,
+        UC_PROPOSE = 11,
+        EP_ABORT = 20,
+        EP_ABORTED = 21,
+        EP_ACCEPT_ = 22,
+        EP_DECIDE = 23,
+        EP_DECIDED_ = 24,
         EP_PROPOSE = 25,
         EP_READ_ = 26,
         EP_STATE_ = 27,
         EP_WRITE_ = 28,
-        PL_DELIVER = 29,
-        PL_SEND = 30,
-        UC_DECIDE = 31,
-        UC_PROPOSE = 32
+        EC_NACK_ = 30,
+        EC_NEW_EPOCH_ = 31,
+        EC_START_EPOCH = 32,
+        BEB_BROADCAST = 40,
+        BEB_DELIVER = 41,
+        ELD_TIMEOUT = 50,
+        ELD_TRUST = 51,
+        EPFD_TIMEOUT = 60,
+        EPFD_HEARTBEAT_REQUEST = 61,
+        EPFD_HEARTBEAT_REPLY = 62,
+        EPFD_SUSPECT = 63,
+        EPFD_RESTORE = 64,
+        PL_DELIVER = 70,
+        PL_SEND = 71
     }
 }

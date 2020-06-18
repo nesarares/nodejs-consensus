@@ -21,12 +21,21 @@ export class Application {
   private initNetworkListener() {
     const networkListener = new NetworkListener(this.port);
 
-    networkListener.on("network-message", (networkMessage: NetworkMessage) => {
-      const systemId = networkMessage.message?.systemId!;
+    networkListener.on("network-message", async (message: Message) => {
+      const systemId = message.systemId!;
+
+      const actualMessage = message?.networkMessage?.message;
+      if (!actualMessage) {
+        console.log(message);
+      } else {
+        if (actualMessage?.type === Message.Type.EPFD_HEARTBEAT_REQUEST) return;
+        console.log(actualMessage);
+      }
+
       if (!this.systems.has(systemId)) {
         this.systems.set(systemId, new System(systemId, this.port));
       }
-      this.systems.get(systemId)?.newNetworkMessage(networkMessage);
+      this.systems.get(systemId)?.newNetworkMessage(message); 
     });
 
     networkListener.on("listening", () => {
@@ -38,7 +47,6 @@ export class Application {
     const appRegistration = AppRegistration.create({
       owner: Constants.OWNER,
       index: this.index,
-      port: this.port,
     });
 
     const message = Message.create({

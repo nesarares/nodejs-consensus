@@ -2,7 +2,6 @@ import net from "net";
 
 import { Application } from "./application";
 import { Utils } from "./utils/utils";
-import { AppPropose } from "./models/model";
 
 function validateArgs() {
   if (process.argv.length < 4) {
