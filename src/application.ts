@@ -1,6 +1,6 @@
 import { NetworkListener } from "./system/network-listener";
 import { System } from "./system/system";
-import { NetworkMessage, AppRegistration, Message } from "./models/model";
+import { AppRegistration, Message } from "./models/model";
 import { PerfectLink } from "./algorithms/perfect-link";
 import { Constants } from "./utils/constants";
 
@@ -23,19 +23,18 @@ export class Application {
 
     networkListener.on("network-message", async (message: Message) => {
       const systemId = message.systemId!;
-
       const actualMessage = message?.networkMessage?.message;
-      if (!actualMessage) {
-        console.log(message);
-      } else {
-        if (actualMessage?.type === Message.Type.EPFD_HEARTBEAT_REQUEST) return;
-        console.log(actualMessage);
-      }
+
+      if (!actualMessage) return;
+
+      if (actualMessage?.type === Message.Type.EPFD_HEARTBEAT_REQUEST) return;
+      console.log(actualMessage);
 
       if (!this.systems.has(systemId)) {
         this.systems.set(systemId, new System(systemId, this.port));
       }
-      this.systems.get(systemId)?.newNetworkMessage(message); 
+
+      this.systems.get(systemId)?.newNetworkMessage(message);
     });
 
     networkListener.on("listening", () => {

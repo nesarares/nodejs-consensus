@@ -78,7 +78,6 @@ export class PerfectLink implements Algorithm {
   }
 
   private send(plSend: IPlSend) {
-    console.log({ plSend });
     plSend.message!.systemId = this.system.systemId;
     plSend.message!.abstractionId = plSend.message!.abstractionId || "app";
 
@@ -91,8 +90,6 @@ export class PerfectLink implements Algorithm {
   }
 
   private deliver(plDeliver: IPlDeliver) {
-    if (plDeliver.message?.type === Message.Type.EPFD_HEARTBEAT_REQUEST) return;
-    // console.log({ plDeliver }); 
     this.system.newMessage(plDeliver.message!);
   }
 }
