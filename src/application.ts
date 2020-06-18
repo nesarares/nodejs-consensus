@@ -7,12 +7,7 @@ import { Constants } from "./utils/constants";
 export class Application {
   private systems: Map<string, System> = new Map();
 
-  constructor(
-    private hubIp: string,
-    private hubPort: number,
-    private port: number,
-    private index: number
-  ) {}
+  constructor(private hubIp: string, private hubPort: number, private port: number, private index: number) {}
 
   public run() {
     this.initNetworkListener();
@@ -30,11 +25,13 @@ export class Application {
       if (actualMessage?.type === Message.Type.EPFD_HEARTBEAT_REQUEST) return;
       console.log(actualMessage);
 
-      if (!this.systems.has(systemId)) {
-        this.systems.set(systemId, new System(systemId, this.port));
+      if (actualMessage.type === Message.Type.APP_PROPOSE) {
+        this.systems.set(systemId, new System(systemId, this.port, actualMessage.appPropose!));
+      } else if (!this.systems.has(systemId)) {
+        console.log("Received message for system which has not been initialized. Skipping.");
+      } else {
+        this.systems.get(systemId)?.newNetworkMessage(message);
       }
-
-      this.systems.get(systemId)?.newNetworkMessage(message);
     });
 
     networkListener.on("listening", () => {

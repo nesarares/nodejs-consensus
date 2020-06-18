@@ -1,13 +1,6 @@
-import {
-  ProcessId,
-  Message,
-  PlDeliver,
-  IMessage,
-  IProcessId,
-} from "../models/model";
-import { Algorithm } from "./algorithm";
 import { PerfectLink } from "../algorithms/perfect-link";
-import { throws } from "assert";
+import { IAppPropose, IMessage, IProcessId, Message, PlDeliver } from "../models/model";
+import { Algorithm } from "./algorithm";
 
 export class System {
   private processes: IProcessId[] = [];
@@ -17,8 +10,10 @@ export class System {
   private isEventLoopRunning = false;
   private rerunEventLoop = false;
 
-  constructor(public systemId: string, public port: number) {
+  constructor(public systemId: string, public port: number, appPropose: IAppPropose) {
+    this.processes = appPropose.processes!;
     this.algorithms = [new PerfectLink(this)];
+    console.log(`Initialized new system "${systemId}" with ${this.processes.length} participants.`);
   }
 
   async eventLoop() {
@@ -51,29 +46,23 @@ export class System {
     const networkMessage = message.networkMessage!;
     const actualMessage = networkMessage.message!;
 
-    if (actualMessage.type === Message.Type.APP_PROPOSE) {
-      this.processes = actualMessage.appPropose!.processes!;
+    const plDeliver = PlDeliver.create({
+      sender: this.processes.find((process) => process.port === networkMessage.senderListeningPort),
+      message: actualMessage,
+    });
+
+    const newMessage = Message.create({
+      abstractionId: message.abstractionId,
+      type: Message.Type.PL_DELIVER,
+      plDeliver,
+    });
+
+    this.newMessage(newMessage);
+
+    if (this.isEventLoopRunning) {
+      this.rerunEventLoop = true;
     } else {
-      const plDeliver = PlDeliver.create({
-        sender: this.processes.find(
-          (process) => process.port === networkMessage.senderListeningPort
-        ),
-        message: actualMessage,
-      });
-
-      const newMessage = Message.create({
-        abstractionId: message.abstractionId,
-        type: Message.Type.PL_DELIVER,
-        plDeliver,
-      });
-
-      this.newMessage(newMessage);
-
-      if (this.isEventLoopRunning) {
-        this.rerunEventLoop = true;
-      } else {
-        this.eventLoop(); 
-      }
+      this.eventLoop();
     }
   }
 }
