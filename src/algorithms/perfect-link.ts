@@ -1,9 +1,10 @@
-import { Algorithm } from "../system/algorithm";
-import { IPlSend, IPlDeliver, IMessage, Message, NetworkMessage } from "../models/model";
-import { System } from "../system/system";
-import { v4 as uuidv4 } from "uuid";
 import net from "net";
-import { Utils } from '../utils/utils';
+import { v4 as uuidv4 } from "uuid";
+
+import { IMessage, IPlSend, Message, NetworkMessage } from "../models/model";
+import { Algorithm } from "../system/algorithm";
+import { System } from "../system/system";
+import { Utils } from "../utils/utils";
 
 export class PerfectLink implements Algorithm {
   constructor(private system: System) {}
@@ -51,9 +52,6 @@ export class PerfectLink implements Algorithm {
       case Message.Type.PL_SEND:
         this.send(message.plSend!);
         return true;
-      // case Message.Type.PL_DELIVER:
-      //   this.deliver(message.plDeliver!);
-      //   return true;
       default:
         return false;
     }
@@ -71,11 +69,9 @@ export class PerfectLink implements Algorithm {
     });
 
     if (Utils.shouldLog(plSend.message?.type!)) {
-      console.log(`👉 ${Message.Type[plSend.message?.type!]} ➡ ${plSend.destination?.owner}-${plSend.destination?.index}`);
+      console.log(
+        `👉 ${Message.Type[plSend.message?.type!]} ➡ ${plSend.destination?.owner}-${plSend.destination?.index}`
+      );
     }
   }
-
-  // private deliver(plDeliver: IPlDeliver) {
-  //   this.system.trigger(plDeliver.message!);
-  // }
 }
