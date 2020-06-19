@@ -4,12 +4,12 @@ syntax = "proto3";
 Model: Fail-Noisy
 
 app   Custom-made application
-uc    UniformConsensus                  Leader-Driven       5.7  225
-ep    EpochConsensus                    Read/Write Epoch    5.6  223
-ec    EpochChange                       Leader-Based        5.5  219
-beb   BestEffortBroadcast               Basic               3.1  76
-eld   EventualLeaderDetector            Elect Lower Epoch   2.8  57
-epfd  EventuallyPerfectFailureDetector  Increasing Timeout  2.7  55
+uc    UniformConsensus                  Leader-Driven                           5.7  225
+ep    EpochConsensus                    Read/Write Epoch                        5.6  223
+ec    EpochChange                       Leader-Based                            5.5  219
+beb   BestEffortBroadcast               Basic                                   3.1  76
+eld   EventualLeaderDetector            Monarchical Eventual Leader Detection   2.8  57
+epfd  EventuallyPerfectFailureDetector  Increasing Timeout                      2.7  55
 pl    PerfectLink (use TCP)
 
      +---------- app

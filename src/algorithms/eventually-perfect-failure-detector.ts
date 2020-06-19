@@ -15,6 +15,7 @@ import { Constants } from "../utils/constants";
 import { ListUtils } from "../utils/list.utils";
 
 // PAGE 55 (pdf 74)
+// Algorithm: Increasing Timeout
 export class EventuallyPerfectFailureDetector implements Algorithm {
   private alive: IProcessId[];
   private suspected: IProcessId[];

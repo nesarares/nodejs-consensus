@@ -3,6 +3,7 @@ import { IPlSend, IPlDeliver, IMessage, Message, NetworkMessage } from "../model
 import { System } from "../system/system";
 import { v4 as uuidv4 } from "uuid";
 import net from "net";
+import { Utils } from '../utils/utils';
 
 export class PerfectLink implements Algorithm {
   constructor(private system: System) {}
@@ -40,13 +41,9 @@ export class PerfectLink implements Algorithm {
     });
 
     client.on("error", () => {
-      console.error("🔥 Pl.Eend error");
-      console.error(`Could not send message type ${args.message?.type} to client ${args.host} port ${args.port}`);
+      console.error("🔥 Pl.Send error");
+      console.error(`Could not send ${Message.Type[args.message?.type!]} to client ${args.host} port ${args.port}`);
     });
-
-    // client.on("end", () => {
-    //   console.log(`👉 Sent message ${Message.Type[args.message?.type!]} to client ${args.host} port ${args.port}`);
-    // });
   }
 
   public handle(message: IMessage): boolean {
@@ -73,7 +70,9 @@ export class PerfectLink implements Algorithm {
       message: plSend.message!,
     });
 
-    console.log(`👉 ${Message.Type[plSend.message?.type!]} ➡ ${plSend.destination?.owner}-${plSend.destination?.index}`);
+    if (Utils.shouldLog(plSend.message?.type!)) {
+      console.log(`👉 ${Message.Type[plSend.message?.type!]} ➡ ${plSend.destination?.owner}-${plSend.destination?.index}`);
+    }
   }
 
   // private deliver(plDeliver: IPlDeliver) {
