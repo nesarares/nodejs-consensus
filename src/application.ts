@@ -21,10 +21,7 @@ export class Application {
       const actualMessage = message?.networkMessage?.message;
 
       if (!actualMessage) return;
-
-      if (actualMessage?.type === Message.Type.EPFD_HEARTBEAT_REQUEST) return;
-      console.log(actualMessage);
-
+ 
       if (actualMessage.type === Message.Type.APP_PROPOSE) {
         this.systems.set(systemId, new System(systemId, this.port, actualMessage.appPropose!));
       } else if (!this.systems.has(systemId)) {

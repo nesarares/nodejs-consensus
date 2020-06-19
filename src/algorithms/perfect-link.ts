@@ -1,11 +1,5 @@
 import { Algorithm } from "../system/algorithm";
-import {
-  IPlSend,
-  IPlDeliver,
-  IMessage,
-  Message,
-  NetworkMessage,
-} from "../models/model";
+import { IPlSend, IPlDeliver, IMessage, Message, NetworkMessage } from "../models/model";
 import { System } from "../system/system";
 import { v4 as uuidv4 } from "uuid";
 import net from "net";
@@ -13,12 +7,7 @@ import net from "net";
 export class PerfectLink implements Algorithm {
   constructor(private system: System) {}
 
-  public static sendMessage(args: {
-    host: string;
-    port: number;
-    rendevouzPort: number;
-    message: IMessage;
-  }) {
+  public static sendMessage(args: { host: string; port: number; rendevouzPort: number; message: IMessage }) {
     args.message.messageUuid = uuidv4();
 
     const client = new net.Socket();
@@ -52,29 +41,25 @@ export class PerfectLink implements Algorithm {
 
     client.on("error", () => {
       console.error("🔥 Pl.Eend error");
-      console.error(
-        `Could not send message type ${args.message?.type} to client ${args.host} port ${args.port}`
-      );
+      console.error(`Could not send message type ${args.message?.type} to client ${args.host} port ${args.port}`);
     });
 
-    client.on("end", () => {
-      console.log(
-        `👉 Sent message ${Message.Type[args.message?.type!]} to client ${
-          args.host
-        } port ${args.port}`
-      );
-    });
+    // client.on("end", () => {
+    //   console.log(`👉 Sent message ${Message.Type[args.message?.type!]} to client ${args.host} port ${args.port}`);
+    // });
   }
 
   public handle(message: IMessage): boolean {
-    if (message.type === Message.Type.PL_SEND) {
-      this.send(message.plSend!);
-      return true;
-    } else if (message.type === Message.Type.PL_DELIVER) {
-      this.deliver(message.plDeliver!);
-      return true;
+    switch (message.type) {
+      case Message.Type.PL_SEND:
+        this.send(message.plSend!);
+        return true;
+      // case Message.Type.PL_DELIVER:
+      //   this.deliver(message.plDeliver!);
+      //   return true;
+      default:
+        return false;
     }
-    return false;
   }
 
   private send(plSend: IPlSend) {
@@ -87,9 +72,11 @@ export class PerfectLink implements Algorithm {
       rendevouzPort: this.system.port,
       message: plSend.message!,
     });
+
+    console.log(`👉 ${Message.Type[plSend.message?.type!]} ➡ ${plSend.destination?.owner}-${plSend.destination?.index}`);
   }
 
-  private deliver(plDeliver: IPlDeliver) {
-    this.system.newMessage(plDeliver.message!);
-  }
+  // private deliver(plDeliver: IPlDeliver) {
+  //   this.system.trigger(plDeliver.message!);
+  // }
 }

@@ -94,7 +94,7 @@ export class NetworkListener {
   }
 
   private handleSocketData(data: Buffer, socket: Socket) {
-    const { ip, port } = Utils.getIpPort(socket);
+    // const { ip, port } = Utils.getIpPort(socket);
     // console.log(`📦 Received ${data.byteLength} bytes from ${ip}:${port}`);
 
     // const contentLength = data.readInt32BE(0);

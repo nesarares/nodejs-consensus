@@ -1,6 +1,7 @@
 import { PerfectLink } from "../algorithms/perfect-link";
 import { IAppPropose, IMessage, IProcessId, Message, PlDeliver } from "../models/model";
 import { Algorithm } from "./algorithm";
+import { EventuallyPerfectFailureDetector } from "../algorithms/eventually-perfect-failure-detector";
 
 export class System {
   private processes: IProcessId[] = [];
@@ -12,8 +13,12 @@ export class System {
 
   constructor(public systemId: string, public port: number, appPropose: IAppPropose) {
     this.processes = appPropose.processes!;
-    this.algorithms = [new PerfectLink(this)];
+    this.algorithms = [new PerfectLink(this), new EventuallyPerfectFailureDetector(this)];
     console.log(`Initialized new system "${systemId}" with ${this.processes.length} participants.`);
+  }
+
+  get pi(): IProcessId[] {
+    return [...this.processes];
   }
 
   async eventLoop() {
@@ -38,7 +43,7 @@ export class System {
     }
   }
 
-  async newMessage(message: IMessage) {
+  async trigger(message: IMessage) {
     this.messages.push(message);
   }
 
@@ -51,13 +56,15 @@ export class System {
       message: actualMessage,
     });
 
+    console.log(`👈 ${Message.Type[actualMessage?.type!]} ⬅ ${plDeliver.sender?.owner}-${plDeliver.sender?.index}`);
+
     const newMessage = Message.create({
       abstractionId: message.abstractionId,
       type: Message.Type.PL_DELIVER,
       plDeliver,
     });
 
-    this.newMessage(newMessage);
+    this.trigger(newMessage);
 
     if (this.isEventLoopRunning) {
       this.rerunEventLoop = true;
