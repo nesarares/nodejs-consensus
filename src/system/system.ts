@@ -4,7 +4,7 @@ import { Algorithm } from "./algorithm";
 import { EventuallyPerfectFailureDetector } from "../algorithms/eventually-perfect-failure-detector";
 import { Utils } from "../utils/utils";
 import { EventualLeaderDetector } from "../algorithms/eventual-leader-detector";
-import { BestEffortBroadcast } from '../algorithms/best-effort-broadcast';
+import { BestEffortBroadcast } from "../algorithms/best-effort-broadcast";
 
 export class System {
   private processes: IProcessId[] = [];
@@ -16,7 +16,7 @@ export class System {
 
   constructor(public systemId: string, public port: number, appPropose: IAppPropose) {
     this.processes = appPropose.processes!;
-    // console.log(this.processes);
+    console.log(this.processes);
     this.algorithms = [
       new PerfectLink(this),
       new EventualLeaderDetector(this),
@@ -30,9 +30,13 @@ export class System {
     return [...this.processes];
   }
 
+  get self(): IProcessId {
+    return this.processes.find((p) => p.port === this.port)!;
+  }
+
   async eventLoop() {
-    // console.log(this.messages.map(m => Message.Type[m.type!]).join(';'));  
-    // console.log(`${this.messages.length} messages in queue.`);  
+    // console.log(this.messages.map(m => Message.Type[m.type!]).join(';'));
+    // console.log(`${this.messages.length} messages in queue.`);
 
     this.isEventLoopRunning = true;
     this.rerunEventLoop = false;

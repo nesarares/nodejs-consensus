@@ -2,6 +2,8 @@ import { Algorithm } from "../system/algorithm";
 import { Message, IMessage, IPlDeliver, IBebBroadcast, PlSend, BebDeliver } from "../models/model";
 import { System } from "../system/system";
 
+// PAGE 76 (pdf 95)
+// Algorithm: Basic Broadcast
 export class BestEffortBroadcast implements Algorithm {
   public constructor(private system: System) {}
 
@@ -40,7 +42,7 @@ export class BestEffortBroadcast implements Algorithm {
         return true;
       case Message.Type.PL_DELIVER:
         if (
-          [Message.Type.EPFD_HEARTBEAT_REPLY, Message.Type.EPFD_HEARTBEAT_REQUEST].includes(
+          [Message.Type.EPFD_HEARTBEAT_REPLY, Message.Type.EPFD_HEARTBEAT_REQUEST, Message.Type.EC_NACK_].includes(
             message.plDeliver!.message!.type!
           )
         ) {

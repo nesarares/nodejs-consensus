@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { Socket } from "net";
-import { Message } from "../models/model";
+import { Message, IProcessId } from "../models/model";
 
 export class Utils {
   public static generateId() {
@@ -29,5 +29,13 @@ export class Utils {
 
   public static shouldLog(messageType: Message.Type) {
     return ![Message.Type.EPFD_HEARTBEAT_REPLY, Message.Type.EPFD_HEARTBEAT_REQUEST].includes(messageType);
+  }
+
+  public static maxrank(processes: IProcessId[]) {
+    let max = processes[0];
+    processes.forEach((p) => {
+      if (p.rank! > max.rank!) max = p;
+    });
+    return max;
   }
 }

@@ -2,6 +2,7 @@ import { IEpfdSuspect, IMessage, IProcessId, Message, EldTrust } from "../models
 import { Algorithm } from "../system/algorithm";
 import { System } from "../system/system";
 import { ListUtils } from "../utils/list.utils";
+import { Utils } from "../utils/utils";
 
 // PAGE 57 (pdf 76)
 // Algorithm: Monarchical Eventual Leader Detection
@@ -22,14 +23,6 @@ export class EventualLeaderDetector implements Algorithm {
     this.suspected = this.suspected.filter((q) => q != epfdSuspect.process);
   }
 
-  private maxrank(processes: IProcessId[]) {
-    let max = processes[0];
-    processes.forEach((p) => {
-      if (p.rank! > max.rank!) max = p;
-    });
-    return max;
-  }
-
   public handle(message: IMessage): boolean {
     switch (message.type) {
       case Message.Type.EPFD_SUSPECT:
@@ -39,11 +32,11 @@ export class EventualLeaderDetector implements Algorithm {
         this.handleRestore(message.epfdRestore!);
         return true;
       default:
-        const maxrankProcess = this.maxrank(ListUtils.difference(this.system.pi, this.suspected));
+        const maxrankProcess = Utils.maxrank(ListUtils.difference(this.system.pi, this.suspected));
         if (this.leader != maxrankProcess) {
-					this.leader = maxrankProcess;
+          this.leader = maxrankProcess;
           this.system.trigger(
-            Message.create({ 
+            Message.create({
               abstractionId: "eld",
               type: Message.Type.ELD_TRUST,
               eldTrust: EldTrust.create({
