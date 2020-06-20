@@ -6,7 +6,6 @@ import { System } from "../system/system";
 // Algorithm: Basic Broadcast
 export class BestEffortBroadcast implements Algorithm {
   constructor(private system: System) {
-		console.log("Init BEB");
   }
 
   public handleBebBroadcast(bebBroadcast: IBebBroadcast) {

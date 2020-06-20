@@ -26,8 +26,6 @@ export class EventuallyPerfectFailureDetector implements Algorithm {
     this.suspected = [];
     this.delay = Constants.EPFD_DELTA;
     this.starttimer(this.delay);
-
-		console.log("Init EPFD");
   }
 
   private starttimer(delay: number) {

@@ -28,8 +28,6 @@ export class EpochChange implements Algorithm {
     this.lastts = 0;
     this.ts = system.self.rank!;
     this.N = system.pi.length;
-
-		console.log("Init EP");
   }
 
   public get currentLeader(): IProcessId {

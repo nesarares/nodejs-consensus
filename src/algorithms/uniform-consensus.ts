@@ -42,8 +42,6 @@ export class UniformConsensus implements Algorithm {
     this.leader = l0;
     this.newTs = 0;
     this.newLeader = null;
-
-    console.log("Init UC");
   }
 
   private handleUcPropose(ucPropose: IUcPropose) {

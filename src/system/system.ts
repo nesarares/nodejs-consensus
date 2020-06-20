@@ -1,5 +1,5 @@
 import { PerfectLink } from "../algorithms/perfect-link";
-import { IAppPropose, IMessage, IProcessId, Message, PlDeliver } from "../models/model";
+import { IAppPropose, IMessage, IProcessId, Message, PlDeliver, IValue } from "../models/model";
 import { Algorithm } from "./algorithm";
 import { EventuallyPerfectFailureDetector } from "../algorithms/eventually-perfect-failure-detector";
 import { Utils } from "../utils/utils";
@@ -7,6 +7,7 @@ import { EventualLeaderDetector } from "../algorithms/eventual-leader-detector";
 import { BestEffortBroadcast } from "../algorithms/best-effort-broadcast";
 import { EpochChange } from "../algorithms/epoch-change";
 import { UniformConsensus } from "../algorithms/uniform-consensus";
+import { AppLayer } from '../algorithms/app-layer';
 
 export class System {
   private processes: IProcessId[] = [];
@@ -16,18 +17,34 @@ export class System {
   private isEventLoopRunning = false;
   private rerunEventLoop = false;
 
+  private listeners: { event: "decided" | string; callback: any }[] = [];
+
   constructor(public systemId: string, public port: number, appPropose: IAppPropose) {
     this.processes = appPropose.processes!;
     // console.log(this.processes);
-    this.algorithms = [
+    this.algorithms.push(
       new PerfectLink(this),
       new EventualLeaderDetector(this),
       new BestEffortBroadcast(this),
       new EventuallyPerfectFailureDetector(this),
       new EpochChange(this),
       new UniformConsensus(this),
-    ];
+      new AppLayer(this)
+    );
     console.log(`Initialized new system "${systemId}" with ${this.processes.length} participants.`);
+  }
+
+  public on(event: "decided", callback: (value: IValue) => void): void;
+  public on(event: string, callback: (...args: any) => void) {
+    this.listeners.push({ event, callback });
+  }
+
+  public notifyListeners(event: string, ...args: any) {
+    this.listeners.forEach((listener) => {
+      if (listener.event === event) {
+        listener.callback(...args);
+      }
+    });
   }
 
   get pi(): IProcessId[] {
@@ -53,19 +70,27 @@ export class System {
     this.isEventLoopRunning = true;
     this.rerunEventLoop = false;
 
-    this.messages.forEach((message, index) => {
+    // this.messages.forEach((message, index) => {
+    const noMessages = this.messages.length;
+    let index = 0;
+    let consumed = 0;
+    while (consumed < noMessages) {
       let isHandled = false;
       this.algorithms.forEach((algorithm) => {
-        isHandled = isHandled || algorithm.handle(message);
+        isHandled = isHandled || algorithm.handle(this.messages[index]);
       });
       if (isHandled) {
         this.messages.splice(index, 1);
         this.rerunEventLoop = true;
+      } else {
+        index++;
       }
-    });
+      consumed++;
+    }
+    // });
 
     if (this.rerunEventLoop) {
-      this.eventLoop();
+      setTimeout(() => this.eventLoop(), 0);
     } else {
       this.isEventLoopRunning = false;
     }
@@ -86,7 +111,7 @@ export class System {
 
     if (Utils.shouldLog(actualMessage?.type!)) {
       console.log(`👈 ${Message.Type[actualMessage?.type!]} ⬅ ${plDeliver.sender?.owner}-${plDeliver.sender?.index}`);
-      console.log(actualMessage);
+      // console.log(actualMessage);
     }
 
     const newMessage = Message.create({

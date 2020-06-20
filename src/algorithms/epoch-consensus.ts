@@ -35,9 +35,7 @@ export class EpochConsensus implements Algorithm {
     this.state = state;
     this.tmpval = Value.create({ defined: false });
     this.states = new Array(system.pi.length).fill(null);
-		this.accepted = 0;
-		
-		console.log("Init EC " + ets);
+    this.accepted = 0;
   }
 
   private handleEpPropose(epPropose: IEpPropose) {
