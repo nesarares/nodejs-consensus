@@ -5,7 +5,7 @@ import { System } from "../system/system";
 // PAGE 76 (pdf 95)
 // Algorithm: Basic Broadcast
 export class BestEffortBroadcast implements Algorithm {
-  public constructor(private system: System) {}
+  constructor(private system: System) {}
 
   public handleBebBroadcast(bebBroadcast: IBebBroadcast) {
     this.system.pi.forEach((q) => {
@@ -42,9 +42,13 @@ export class BestEffortBroadcast implements Algorithm {
         return true;
       case Message.Type.PL_DELIVER:
         if (
-          [Message.Type.EPFD_HEARTBEAT_REPLY, Message.Type.EPFD_HEARTBEAT_REQUEST, Message.Type.EC_NACK_].includes(
-            message.plDeliver!.message!.type!
-          )
+          [
+            Message.Type.EPFD_HEARTBEAT_REPLY,
+            Message.Type.EPFD_HEARTBEAT_REQUEST,
+            Message.Type.EC_NACK_,
+            Message.Type.EP_STATE_,
+            Message.Type.EP_ACCEPT_,
+          ].includes(message.plDeliver!.message!.type!)
         ) {
           return false;
         }
