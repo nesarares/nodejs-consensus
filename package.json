@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/src/index.js",
+    "start": "node ./dist/src/index.js 127.0.0.1 5000 6001 6002 6003",
     "dev": "tsc-watch --onSuccess \"node ./dist/src/index.js 127.0.0.1 5000 6001 6002 6003\" --onFailure \"echo Compilation Failed!\" --compiler typescript/bin/tsc --pretty",
     "dev1": "tsc-watch --onSuccess \"node ./dist/src/index.js 127.0.0.1 5000 6001\" --onFailure \"echo Compilation Failed!\" --compiler typescript/bin/tsc --pretty",
     "build": "tsc",
