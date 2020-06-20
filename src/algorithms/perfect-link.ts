@@ -7,7 +7,9 @@ import { System } from "../system/system";
 import { Utils } from "../utils/utils";
 
 export class PerfectLink implements Algorithm {
-  constructor(private system: System) {}
+  constructor(private system: System) {
+		console.log("Init PL");
+  }
 
   public static sendMessage(args: { host: string; port: number; rendevouzPort: number; message: IMessage }) {
     args.message.messageUuid = uuidv4();

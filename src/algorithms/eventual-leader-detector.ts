@@ -13,6 +13,8 @@ export class EventualLeaderDetector implements Algorithm {
   constructor(private system: System) {
     this.suspected = [];
     this.leader = null;
+
+		console.log("Init ELD");
   }
 
   private handleSuspect(epfdSuspect: IEpfdSuspect) {

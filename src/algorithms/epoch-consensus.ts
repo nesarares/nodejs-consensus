@@ -33,9 +33,11 @@ export class EpochConsensus implements Algorithm {
 
   constructor(private system: System, state: IEpState_, private ets: number, private leader: IProcessId) {
     this.state = state;
-    this.tmpval = Value.create({ defined: false, v: null });
+    this.tmpval = Value.create({ defined: false });
     this.states = new Array(system.pi.length).fill(null);
-    this.accepted = 0;
+		this.accepted = 0;
+		
+		console.log("Init EC " + ets);
   }
 
   private handleEpPropose(epPropose: IEpPropose) {
@@ -199,14 +201,14 @@ export class EpochConsensus implements Algorithm {
   public handle(message: IMessage): boolean {
     if (this.halted) return false;
 
-    const abstractionId =
-      message?.bebDeliver?.message?.abstractionId ??
-      message?.plDeliver?.message?.abstractionId ??
-      message?.abstractionId;
+    // const abstractionId =
+    //   message?.bebDeliver?.message?.abstractionId ??
+    //   message?.plDeliver?.message?.abstractionId ??
+    //   message?.abstractionId;
 
-    if (abstractionId?.startsWith("ep") && abstractionId !== "ep" + this.ets) {
-      return false;
-    }
+    // if (abstractionId?.startsWith("ep") && abstractionId !== "ep" + this.ets) {
+    //   return false;
+    // }
 
     switch (message.type) {
       case Message.Type.EP_PROPOSE:

@@ -5,6 +5,8 @@ import { EventuallyPerfectFailureDetector } from "../algorithms/eventually-perfe
 import { Utils } from "../utils/utils";
 import { EventualLeaderDetector } from "../algorithms/eventual-leader-detector";
 import { BestEffortBroadcast } from "../algorithms/best-effort-broadcast";
+import { EpochChange } from "../algorithms/epoch-change";
+import { UniformConsensus } from "../algorithms/uniform-consensus";
 
 export class System {
   private processes: IProcessId[] = [];
@@ -16,12 +18,14 @@ export class System {
 
   constructor(public systemId: string, public port: number, appPropose: IAppPropose) {
     this.processes = appPropose.processes!;
-    console.log(this.processes);
+    // console.log(this.processes);
     this.algorithms = [
       new PerfectLink(this),
       new EventualLeaderDetector(this),
       new BestEffortBroadcast(this),
       new EventuallyPerfectFailureDetector(this),
+      new EpochChange(this),
+      new UniformConsensus(this),
     ];
     console.log(`Initialized new system "${systemId}" with ${this.processes.length} participants.`);
   }
@@ -30,8 +34,16 @@ export class System {
     return [...this.processes];
   }
 
+  get instances(): Algorithm[] {
+    return [...this.algorithms];
+  }
+
   get self(): IProcessId {
     return this.processes.find((p) => p.port === this.port)!;
+  }
+
+  public addAlgorithm(algorithm: Algorithm) {
+    this.algorithms.push(algorithm);
   }
 
   async eventLoop() {
@@ -74,6 +86,7 @@ export class System {
 
     if (Utils.shouldLog(actualMessage?.type!)) {
       console.log(`👈 ${Message.Type[actualMessage?.type!]} ⬅ ${plDeliver.sender?.owner}-${plDeliver.sender?.index}`);
+      console.log(actualMessage);
     }
 
     const newMessage = Message.create({

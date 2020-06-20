@@ -17,7 +17,7 @@ import { Utils } from "../utils/utils";
 
 // PAGE 219 (pdf 237)
 // Algorithm: Leader-Based Epoch-Change
-export class BestEffortBroadcast implements Algorithm {
+export class EpochChange implements Algorithm {
   private trusted: IProcessId;
   private lastts: number;
   private ts: number;
@@ -28,6 +28,12 @@ export class BestEffortBroadcast implements Algorithm {
     this.lastts = 0;
     this.ts = system.self.rank!;
     this.N = system.pi.length;
+
+		console.log("Init EP");
+  }
+
+  public get currentLeader(): IProcessId {
+    return this.trusted;
   }
 
   private handleTrust(eldTrust: IEldTrust) {

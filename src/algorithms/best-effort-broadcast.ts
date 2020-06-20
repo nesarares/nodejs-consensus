@@ -5,7 +5,9 @@ import { System } from "../system/system";
 // PAGE 76 (pdf 95)
 // Algorithm: Basic Broadcast
 export class BestEffortBroadcast implements Algorithm {
-  constructor(private system: System) {}
+  constructor(private system: System) {
+		console.log("Init BEB");
+  }
 
   public handleBebBroadcast(bebBroadcast: IBebBroadcast) {
     this.system.pi.forEach((q) => {
