@@ -8,6 +8,7 @@ export class AppLayer implements Algorithm {
   public handle(message: IMessage): boolean {
     switch (message.type) {
       case Message.Type.UC_DECIDE:
+        this.system.stopped = true;
         this.system.notifyListeners("decided", message.ucDecide?.value);
         return true;
       default:

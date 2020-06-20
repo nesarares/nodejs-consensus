@@ -12,11 +12,11 @@ import {
   Message,
   UcDecide,
   Value,
-} from '../models/model';
-import { Algorithm } from '../system/algorithm';
-import { System } from '../system/system';
-import { Utils } from '../utils/utils';
-import { EpochConsensus } from './epoch-consensus';
+} from "../models/model";
+import { Algorithm } from "../system/algorithm";
+import { System } from "../system/system";
+import { Utils } from "../utils/utils";
+import { EpochConsensus } from "./epoch-consensus";
 
 // PAGE 225 (pdf 243)
 // Algorithm: Leader-Driven Consensus
@@ -34,7 +34,7 @@ export class UniformConsensus implements Algorithm {
     this.proposed = false;
     this.decided = false;
 
-		const l0 = Utils.maxrank(system.pi); 
+    const l0 = Utils.maxrank(system.pi);
     const state = EpState_.create({ valueTimestamp: 0, value: Value.create({ defined: false }) });
     this.system.addAlgorithm(new EpochConsensus(system, state, 0, l0));
 
@@ -59,6 +59,8 @@ export class UniformConsensus implements Algorithm {
         epAbort: EpAbort.create({}),
       })
     );
+    console.log(`🧾 EP_ABORT@ep${this.ets}`);
+
     return true;
   }
 
@@ -89,6 +91,7 @@ export class UniformConsensus implements Algorithm {
           }),
         })
       );
+      console.log(`🧾 UC_DECIDE@uc (${epDecide.value?.v})`);
     }
     return true;
   }
@@ -105,6 +108,7 @@ export class UniformConsensus implements Algorithm {
           }),
         })
       );
+      console.log(`🧾 EP_PROPOSE@ep (${this.val.v})`);
       return true;
     }
 

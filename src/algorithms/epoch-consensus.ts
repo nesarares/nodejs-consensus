@@ -53,6 +53,7 @@ export class EpochConsensus implements Algorithm {
         }),
       })
     );
+    console.log(`🧾 BEB_BROADCAST@beb.EP_READ@ep${this.ets}`);
     return true;
   }
 
@@ -170,6 +171,7 @@ export class EpochConsensus implements Algorithm {
           }),
         })
       );
+      console.log(`🧾 BEB_BROADCAST@beb.EP_WRITE_@ep${this.ets} (${this.tmpval.v})`);
       return true;
     }
 

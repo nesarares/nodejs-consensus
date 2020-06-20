@@ -1,5 +1,5 @@
 import { PerfectLink } from "../algorithms/perfect-link";
-import { IAppPropose, IMessage, IProcessId, Message, PlDeliver, IValue } from "../models/model";
+import { IAppPropose, IMessage, IProcessId, Message, PlDeliver, IValue, UcPropose } from "../models/model";
 import { Algorithm } from "./algorithm";
 import { EventuallyPerfectFailureDetector } from "../algorithms/eventually-perfect-failure-detector";
 import { Utils } from "../utils/utils";
@@ -7,7 +7,7 @@ import { EventualLeaderDetector } from "../algorithms/eventual-leader-detector";
 import { BestEffortBroadcast } from "../algorithms/best-effort-broadcast";
 import { EpochChange } from "../algorithms/epoch-change";
 import { UniformConsensus } from "../algorithms/uniform-consensus";
-import { AppLayer } from '../algorithms/app-layer';
+import { AppLayer } from "../algorithms/app-layer";
 
 export class System {
   private processes: IProcessId[] = [];
@@ -18,6 +18,7 @@ export class System {
   private rerunEventLoop = false;
 
   private listeners: { event: "decided" | string; callback: any }[] = [];
+  public stopped = false;
 
   constructor(public systemId: string, public port: number, appPropose: IAppPropose) {
     this.processes = appPropose.processes!;
@@ -31,7 +32,19 @@ export class System {
       new UniformConsensus(this),
       new AppLayer(this)
     );
+
+    this.trigger(
+      Message.create({
+        abstractionId: "uc",
+        type: Message.Type.UC_PROPOSE,
+        ucPropose: UcPropose.create({
+          value: appPropose.value,
+        }),
+      })
+    );
+
     console.log(`Initialized new system "${systemId}" with ${this.processes.length} participants.`);
+    this.eventLoop();
   }
 
   public on(event: "decided", callback: (value: IValue) => void): void;
@@ -66,18 +79,19 @@ export class System {
   async eventLoop() {
     // console.log(this.messages.map(m => Message.Type[m.type!]).join(';'));
     // console.log(`${this.messages.length} messages in queue.`);
+    if (this.stopped) return;
 
     this.isEventLoopRunning = true;
     this.rerunEventLoop = false;
 
-    // this.messages.forEach((message, index) => {
     const noMessages = this.messages.length;
     let index = 0;
     let consumed = 0;
     while (consumed < noMessages) {
+      const message = this.messages[index];
       let isHandled = false;
       this.algorithms.forEach((algorithm) => {
-        isHandled = isHandled || algorithm.handle(this.messages[index]);
+        isHandled = algorithm.handle(message) || isHandled;
       });
       if (isHandled) {
         this.messages.splice(index, 1);
@@ -87,7 +101,6 @@ export class System {
       }
       consumed++;
     }
-    // });
 
     if (this.rerunEventLoop) {
       setTimeout(() => this.eventLoop(), 0);

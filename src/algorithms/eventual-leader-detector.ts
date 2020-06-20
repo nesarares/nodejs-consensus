@@ -44,6 +44,7 @@ export class EventualLeaderDetector implements Algorithm {
               }),
             })
           );
+          console.log(`🧾 ELD_TRUST@eld (${this.leader.owner}-${this.leader.index})`);
           return true;
         }
         return false;

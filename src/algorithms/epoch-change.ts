@@ -53,6 +53,8 @@ export class EpochChange implements Algorithm {
           }),
         })
       );
+
+      console.log(`🧾 BEB_BROADCAST@beb.EC_NEW_EPOCH_@ec${this.ts}`);
     }
   }
 
@@ -72,6 +74,8 @@ export class EpochChange implements Algorithm {
           }),
         })
       );
+
+      console.log(`🧾 EC_START_EPOCH@ec${lastts} (${newts} - ${l.owner}-${l.index})`);
     } else {
       this.system.trigger(
         Message.create({
@@ -87,6 +91,8 @@ export class EpochChange implements Algorithm {
           }),
         })
       );
+
+      console.log(`🧾 PL_SEND@pl.EC_NACK@ec${newts}`);
     }
   }
 
